@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+
+    <h2>Pending tasks</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Submitted</th>
+          <th>Fichier source</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="task in tasks">
+          <td>{{task.source.date}}</td>
+          <td>{{task.source.displayName}}</td>
+          <td>{{task.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

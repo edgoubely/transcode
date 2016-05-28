@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-6 col-lg-offset-3">
+      <form class="form-inline text-center" name="urlForm" ng-show="!currentTask.source">
+        <div class="form-group">
+          <button class="btn btn-primary" name="file" 
+            ngf-select="sendFile(file)"
+            ngf-accept="'video/*'"
+            ng-model="file">
+            Pick a file
+          </button>
+          <b>&nbsp;or&nbsp;</b>
+          <input class="form-control input" style="width: 118px;" placeholder="Paste a URL" name="videoURL" 
+            ng-model-options="{ debounce: 500 }"
+            ng-model="videoURL"
+            type="text"
+            tc-url
+            required>
+        </div>
+      </form>
+
+      <!-- Barre de progressoin de l'envoi du fichier -->
+      <div ng-show="isFileSelected && !isFileUploaded">
+        <p>Envoi du fichier <b>{{file.name}}</b> en cours...</p>
+        <div class="progress">
+          <div class="progress-bar"
+          role="progressbar"
+          aria-valuenow="{{progress}}"
+          aria-valuemin="0" 
+          aria-valuemax="100" 
+          style="width: {{progress}}%;">
+            {{progress}}%
+          </div>
+        </div> 
+      </div>
+
+      <form name="taskCreationForm" ng-hide="!currentTask.source">
+        <h3>File</h3>
+        <p>
+          <b>{{currentTask.source.displayName}}</b> ({{currentTask.source.infos.format.size}} bytes)<br>
+          <b>Format:</b> {{currentTask.source.infos.format.format_long_name}}<br>
+          <b>Extensions:</b> {{currentTask.source.infos.format.format_name}}<br>
+          <b>Duration:</b> {{currentTask.source.infos.format.duration}}s<br>
+          <b>Bitrate:</b> {{currentTask.source.infos.format.bit_rate}} b/s<br>
+          <b>Streams:</b>
+          <ol>
+            <li ng-repeat="stream in currentTask.source.infos.streams"><b>({{stream.codec_type}})</b>&nbsp;{{stream.codec_long_name}}</li>
+          </ol>
+        </p>
+
+
+        <h3>Task</h3>
+        <div class="form-group">
+          <select class="form-control"
+            ng-init="command = availableCommands[0]"
+            ng-model="command"
+            ng-options="command.descr for command in availableCommands">
+          </select>
+        </div>
+        <div class="form-group" ng-show="command.code == 'convert'">
+          <label class="control-label">Choose a destination format :</label>
+          <select class="form-control" 
+            ng-init="format = availableFormats[0]"
+            ng-model="format"
+            ng-options="format.name for format in availableFormats">
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-warning" ng-click="abortTaskCreation()">Cancel</button>
+        <button type="submit" ng-disabled="taskCreationForm.$invalid" class="btn btn-primary" ng-click="submitTask()">Proceed</button>
+      </form>
+    </div>
+  </div>
+</div>

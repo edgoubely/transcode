@@ -1,0 +1,32 @@
+{
+  "name": "transcode-client",
+  "version": "0.0.0",
+  "authors": [
+    "Edward Goubely <edgoubely@yahoo.fr>"
+  ],
+  "description": "Transcode AngularJS Client for 4PJT",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.9",
+    "angular-messages": "~1.4.9",
+    "angular-sanitize": "~1.4.9",
+    "angular-ui-router": "~0.2.15",
+    "angular": "~1.4.9",
+    "satellizer": "~0.13.4",
+    "angular-toastr": "~1.6.0",
+    "angular-resource": "~1.4.9",
+    "bootstrap": "~3.3.6",
+    "ionicons": "~2.0.1",
+    "ui-bootstrap": "~1.1.1",
+    "underscore": "~1.8.3",
+    "ng-file-upload": "~11.2.3",
+    "socket.io-client": "~1.4.6"
+  }
+}
