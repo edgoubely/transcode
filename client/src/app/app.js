@@ -36,15 +36,15 @@ angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimat
         }
       })
       .state('getstarted', {
-      	url: '/getstarted',
-      	templateUrl: 'tasks/getstarted.tpl.html',
-      	controller: 'TaskCreationCtrl',
+        url: '/getstarted',
+        templateUrl: 'tasks/getstarted.tpl.html',
+        controller: 'TaskCreationCtrl',
       })
       .state('pricing', {
-      	url: '/pricing',
-      	templateUrl: 'pricing/pricing.tpl.html',
-      	controller: 'PricingCtrl',
-      	controllerAs: 'vm'
+        url: '/pricing',
+        templateUrl: 'pricing/pricing.tpl.html',
+        controller: 'PricingCtrl',
+        controllerAs: 'vm'
       })
       .state('contact', {
         url: '/contact',
@@ -64,34 +64,40 @@ angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimat
 
     $authProvider.baseUrl = TcConfig.API;
 
-		$authProvider.facebook({
-			clientId: 1350651101627198,
-		  name: 'facebook',
-		  url: '/auth/facebook',
-		  authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
-		  redirectUri: window.location.origin + '/',
-		  requiredUrlParams: ['display', 'scope'],
-		  scope: ['email'],
-		  scopeDelimiter: ',',
-		  display: 'popup',
-		  type: '2.0',
-		  popupOptions: { width: 580, height: 400 }
-		});
+    $authProvider.facebook({
+      clientId: 1350651101627198,
+      name: 'facebook',
+      url: '/auth/facebook',
+      authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+      redirectUri: window.location.origin + '/',
+      requiredUrlParams: ['display', 'scope'],
+      scope: ['email'],
+      scopeDelimiter: ',',
+      display: 'popup',
+      type: '2.0',
+      popupOptions: {
+        width: 580,
+        height: 400
+      }
+    });
 
-		$authProvider.google({
-			clientId: '298208586935-e4c6ud48023kfgmsl3h8qlus5tbpkcso.apps.googleusercontent.com',
-		  url: '/auth/google',
-		  authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
-		  redirectUri: window.location.origin,
-		  requiredUrlParams: ['scope'],
-		  optionalUrlParams: ['display'],
-		  scope: ['profile', 'email'],
-		  scopePrefix: 'openid',
-		  scopeDelimiter: ' ',
-		  display: 'popup',
-		  type: '2.0',
-		  popupOptions: { width: 452, height: 633 }
-		});
+    $authProvider.google({
+      clientId: '298208586935-e4c6ud48023kfgmsl3h8qlus5tbpkcso.apps.googleusercontent.com',
+      url: '/auth/google',
+      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+      redirectUri: window.location.origin,
+      requiredUrlParams: ['scope'],
+      optionalUrlParams: ['display'],
+      scope: ['profile', 'email'],
+      scopePrefix: 'openid',
+      scopeDelimiter: ' ',
+      display: 'popup',
+      type: '2.0',
+      popupOptions: {
+        width: 452,
+        height: 633
+      }
+    });
 
     function skipIfLoggedIn($q, $auth) {
       var deferred = $q.defer();
@@ -114,24 +120,23 @@ angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimat
     }
 
     angular.extend(toastrConfig, {
-    	positionClass: 'toast-bottom-right'
+      positionClass: 'toast-bottom-right'
     });
-	})
-	.run(function($rootScope, $auth, Account, Tasks) {
+  })
+  .run(function($rootScope, $auth, Account, Tasks) {
     Tasks.getCurrentTask();
     
-		if ($auth.isAuthenticated()) {
-			try {
-				$rootScope.user = localStorage.getItem('user') ? angular.fromJson(localStorage.getItem('user')) : {};	
-			} 
-      catch (e) {
-				localStorage.removeItem('user');
-				Account.getProfile(function(response) {
-					if (response.data.user) {
-						localStorage.setItem('user', response.data.user);
-						$rootScope.user = response.data.user;
-					}
-				});
-			}
-		}
-	});
+    if ($auth.isAuthenticated()) {
+      try {
+        $rootScope.user = localStorage.getItem('user') ? angular.fromJson(localStorage.getItem('user')) : {};
+      } catch (e) {
+        localStorage.removeItem('user');
+        Account.getProfile(function(response) {
+          if (response.data.user) {
+            localStorage.setItem('user', response.data.user);
+            $rootScope.user = response.data.user;
+          }
+        });
+      }
+    }
+  });

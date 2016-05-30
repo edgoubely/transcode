@@ -86,8 +86,8 @@ app.post('/contact', contact.postContact);
 
 app.get('/task', auth.isAuthenticated, tasks.index);
 app.put('/task', tasks.submitTask);
-app.post('/task/file', tasks.fromFile);
-app.post('/task/url', tasks.fromURL);
+app.post('/task/file', auth.isAuthenticatedOrGuest, tasks.fromFile);
+app.post('/task/url', auth.isAuthenticatedOrGuest, tasks.fromURL);
 
 /**
  *	Startup

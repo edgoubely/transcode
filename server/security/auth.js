@@ -12,6 +12,15 @@ exports.isAuthenticated = function(req, res, next) {
   });
 };
 
+exports.isAuthenticatedOrGuest = function(req, res, next) {
+  verifyAuthorizationHeader(req, function(err, user) {
+    if (err)
+      return next();
+    req.user = user;
+    next();
+  });
+};
+
 function verifyAuthorizationHeader(req, cb) {
   var token = req.headers.authorization;
   var error = {

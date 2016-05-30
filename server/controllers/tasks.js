@@ -49,6 +49,7 @@ exports.submitTask = function(req, res, next) {
         if (!task.user.subscriptionPlan && task.user.taskSubmissions >= 5) {
           done(task, 'waiting_for_payment');
         } else {
+          task.user.taskSubmissions++;
           Core.pushJob(task, function(err, jobId) {
             done(task, 'submitted');
           });
