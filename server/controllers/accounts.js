@@ -84,6 +84,7 @@ exports.unlink = function(req, res) {
       }
 
       if (!hasProvider) {
+        //TODO: delete tasks and files
         return User.remove({
           _id: user._id
         }, function()  {
@@ -126,7 +127,7 @@ exports.deleteAccount = function(req, res, next) {
 
     removeDirRecursively(userTaskDir, function(err) {
       if (err)
-        return err;
+        return next(err);
 
       User.remove({
         _id: req.user.id

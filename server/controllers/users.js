@@ -187,14 +187,12 @@ exports.getReset = function(req, res) {
         return next(err);
       }
       if (!user) {
-        req.flash('errors', {
+        res.status(404).json({
           msg: 'Password reset token is invalid or has expired.'
         });
-        return res.redirect('/forgot');
       }
-      res.render('account/reset', {
-        title: 'Password Reset'
-      });
+      //TODO
+      res.end();
     });
 };
 
@@ -208,8 +206,9 @@ exports.postReset = function(req, res, next) {
 
   var errors = req.validationErrors();
 
-  if (errors)
+  if (errors) {
     res.status(403).json(errors);
+  }
 
   async.waterfall([
     function(done) {
@@ -269,8 +268,7 @@ exports.postForgot = function(req, res, next) {
   var errors = req.validationErrors();
 
   if (errors) {
-    req.flash('errors', errors);
-    return res.redirect('/forgot');
+    res.status(403).json(errors);
   }
 
   async.waterfall([
@@ -285,10 +283,9 @@ exports.postForgot = function(req, res, next) {
         email: req.body.email.toLowerCase()
       }, function(err, user) {
         if (!user) {
-          req.flash('errors', {
+          res.status(404).json({
             msg: 'No account with that email address exists.'
           });
-          return res.redirect('/forgot');
         }
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour

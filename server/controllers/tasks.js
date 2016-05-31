@@ -14,7 +14,7 @@ var
 
 /**
  * GET /tasks
- * Send the user's tasks.
+ * Retrieve the user's tasks.
  */
 exports.index = function(req, res, next) {
   Task.find({
@@ -23,6 +23,60 @@ exports.index = function(req, res, next) {
     if (err)
       return next(err);
     res.json(tasks);
+  });
+};
+
+/**
+ * DELETE /tasks/{id}
+ * Delete task result file
+ */
+exports.deleteTaskResult = function(req, res, next) {
+  req.assert('task_id').notEmpty();
+
+  if (req.validationErrors())
+    return res.status(403).json(req.validationErrors());
+
+  Task.findById({
+    _id: req.body.task_id
+  }, function(err, task) {
+    if (err)
+      return next(err);
+
+    if (task.target.filename) {
+      fs.unlink(path.join(req.app.get('videos-base-directory'), task.target.filename), function(err) {
+        if (err)
+          return next(err);
+        delete task.target.filename;
+        task.save(function(err) {
+          res.status(200).end();
+        });
+      });
+    }
+  });
+};
+
+/**
+ * POST /task/{id}
+ * Update a task status (Core request)
+ */
+exports.updateStatus = function(req, res, next) {
+  req.assert('task_id').notEmpty();
+  req.assert('status').notEmpty();
+
+  if (req.validationErrors())
+    return res.status(403).json(req.validationErrors());
+
+  Task.findById({
+    _id: req.body.task_id
+  }, function(err, task) {
+    if (err)
+      return next(err);
+    task.status = req.body.status;
+    task.save(function(err) {
+      if (err)
+        return next(err);
+      res.status(200).end();
+    });
   });
 };
 
@@ -51,7 +105,7 @@ exports.submitTask = function(req, res, next) {
         } else {
           task.user.taskSubmissions++;
           Core.pushJob(task, function(err, jobId) {
-            done(task, 'submitted');
+            done(task, 'queued');
           });
         }
       } else {
@@ -88,35 +142,13 @@ exports.fromURL = function(req, res, next) {
   var videoRequest = request.get(req.body.video_url);
   var task = new Task();
 
-  if (req.user)
-    task.user = req.user.id;
-
-  var destName = fileUID(task.user);
-  var destPath = path.join(req.app.get('videos-base-directory'), req.user ? req.user.id : 'temp');
-
-  task.source.displayName = req.body.video_url;
-  task.source.filename = destName;
-  task.source.path = destPath;
-
-  mkdirp(destPath, function(err) {
-    var dest = fs.createWriteStream(path.join(destPath, destName));
-
-    dest.on('finish', function(data) {
-      probe(path.join(destPath, destName), function(err, probeData) {
-        task.source.infos = JSON.stringify(probeData);
-
-        task.save(function(err) {
-          var resContent = {
-            task_id: task._id,
-            source: task.source
-          };
-
-          res.status(200).json(resContent);
-        });
-      });
+  initTask(req, task, function(err, stream) {
+    stream.on('finish', function(data) {
+      task.displayName = req.body.video_url;
+      probeSourceAndSaveTask(task, res);
     });
     // TODO: check response content type
-    videoRequest.pipe(dest);
+    videoRequest.pipe(stream);
   });
 };
 
@@ -126,48 +158,61 @@ exports.fromURL = function(req, res, next) {
  * then send back the task ID and infos.
  */
 exports.fromFile = function(req, res, next) {
+  var task = new Task();
   var busboy = new Busboy({
     headers: req.headers
   });
-  
-  var task = new Task();
 
   busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    if (req.user)
-      task.user = req.user.id;
-
-    var destName = fileUID(task.user);
-    var destPath = path.join(req.app.get('videos-base-directory'), req.user ? req.user.id : 'temp');
-
-    task.source.displayName = filename;
-    task.source.filename = destName;
-    task.source.path = destPath;
-
-    mkdirp(destPath, function(err) {
-      var dest = fs.createWriteStream(path.join(destPath, destName));
-
-      file.pipe(dest);
+    initTask(req, task, function(err, stream) {
+      task.displayName = filename;
+      file.pipe(stream);
     });
   });
 
   busboy.on('finish', function() {
-    probe(path.join(task.source.path, task.source.filename), function(err, probeData) {
-      task.source.infos = JSON.stringify(probeData);
-
-      task.save(function(err, task) {
-        var resContent = {
-          task_id: task._id,
-          source: task.source
-        };
-
-        res.status(200).json(resContent);
-      });
-    });
+    probeSourceAndSaveTask(task, res);
   });
 
   req.pipe(busboy);
 };
 
+/**
+ * Make the source filename and path for the task.
+ */
+function initTask(req, task, cb) {
+  var destName = fileUID(task.user);
+  var destPath = path.join(req.app.get('videos-base-directory'), req.user ? req.user.id : 'temp');
+
+  if (req.user)  {
+    task.user = req.user.id;
+  }
+  task.source.filename = destName;
+  task.source.path = destPath;
+  mkdirp(destPath, function(err) {
+    cb(err, fs.createWriteStream(path.join(destPath, destName)));
+  });
+}
+
+/**
+ * Retrieve source file infos, add them to the task then send the result.
+ */
+function probeSourceAndSaveTask(task, res) {
+  probe(path.join(task.source.path, task.source.filename), function(err, probeData) {
+    task.source.infos = JSON.stringify(probeData);
+    task.save(function(err, task) {
+      res.status(200);
+      res.json({
+        task_id: task._id,
+        source: task.source
+      });
+    });
+  });
+}
+
+/**
+ * Create a unique file ID for the source.
+ */
 function fileUID(owner) {
   var filename = crypto.pseudoRandomBytes(10).toString('hex');
   if (owner) filename += '-' + owner;
