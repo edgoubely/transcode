@@ -1,109 +1,99 @@
 <!DOCTYPE html>
 <html ng-app="Transcode">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Transcode</title>
-  <link href="favicon.png" rel="shortcut icon">
-  <link href="styles/ionicons.min.css" rel="stylesheet">
-  <link href="styles/font-awesome.css" rel="stylesheet">
-  <link href="styles/bootstrap.css" rel="stylesheet">
-  <link href="styles/angular-toastr.css" rel="stylesheet">
-  <link href="styles/style2.css" rel="stylesheet">
-</head>
-<body>
-<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
-  <div class="container">
-	  <div class="navbar-header">
-	    <a class="navbar-brand" href="/">&nbsp;Transcode</a>
-	  </div>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Transcode</title>
+    <link href="favicon.png" rel="shortcut icon">
+    <link href="styles/ionicons.min.css" rel="stylesheet">
+    <link href="styles/font-awesome.css" rel="stylesheet">
+    <link href="styles/bootstrap.css" rel="stylesheet">
+    <link href="styles/angular-toastr.css" rel="stylesheet">
+    <link href="styles/style2.css" rel="stylesheet">
+    <link href="styles/freelancer.css" rel="stylesheet">
+  </head>
+  <body>
+    <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">&nbsp;Transcode</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/#/getstarted">Get started</a></li>
+          <li ng-if="user"><a href="/#/tasks">Tasks</a></li>
+          <li><a href="/#/pricing">Pricing</a></li>
+          <li><a href="/#/contact">Contact</a></li>
+        </ul>
+        
+        <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
+          <li><a href="/#/login">Login</a></li>
+          <li><a href="/#/signup">Sign up</a></li>
+        </ul>
+        
+        <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
+          <li>
+            <a href="/#/profile">
+              <img ng-src="{{user.picture || 'http://placehold.it/100x100'}}" class="img-circle" style="height: 25px; display: inline;">
+              &nbsp;<b ng-bind-html="user.name"></b>
+            </a>
+          </li>
+          <li><a href="/#/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div ui-view></div>
+    <!-- Third-party Libraries -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
+    <script src="bower_components/ui-bootstrap/src/stackedMap/stackedMap.js"></script>
+    <script src="bower_components/ui-bootstrap/src/modal/modal.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/socket.io-client/socket.io.js"></script>
 
-	  <ul class="nav navbar-nav">
-	  	<li><a href="/#/getstarted">Get started</a></li>
-      <li ng-if="user"><a href="/#/tasks">Tasks</a></li>
-	    <li><a href="/#/pricing">Pricing</a></li>
-      <li><a href="/#/contact">Contact</a></li>
-	  </ul>
-	  
-	  <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
-	    <li><a href="/#/login">Login</a></li>
-	    <li><a href="/#/signup">Sign up</a></li>
-	  </ul>
-	  
-	  <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-	  	<li>
-	  		<a href="/#/profile">
-	  			<img ng-src="{{user.picture || 'http://placehold.it/100x100'}}" class="img-circle" style="height: 25px; display: inline;">
-	  			&nbsp;<b ng-bind-html="user.name"></b>
-	  		</a>
-	  	</li>
-	    <li><a href="/#/logout">Logout</a></li>
-	  </ul>
-  </div>
-</div>
+    <!-- Application Code -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="components/satellizer.password-strength.directive.js"></script>
+    <script src="components/satellizer.password-match.directive.js"></script>
+    <script src="components/confirm-dialog.directive.js"></script>
+    <script src="components/validation.directives.js"></script>
+    <script src="components/landing.controller.js"></script>
+    <script src="components/navigation.controller.js"></script>
+    <script src="security/login.controller.js"></script>
+    <script src="security/logout.controller.js"></script>
+    <script src="account/signup.controller.js"></script>
+    <script src="account/account.controller.js"></script>
+    <script src="account/account.service.js"></script>
+    <script src="contact/contact.controller.js"></script>
+    <script src="pricing/pricing.controller.js"></script>
+    <script src="tasks/task-creation.controller.js"></script>
+    <script src="tasks/task-index.controller.js"></script>
+    <script src="tasks/tasks.service.js"></script>
+    <script>
+    var socket = io.connect('http://localhost:3000/');
+      socket.on('connect', function() {
+      socket.emit('authenticate', {token : 'secret'});
+    });
 
-<div ui-view></div>
+    socket.on('authenticated', function(msg) {
+      console.log('Authenticated');
+    });
 
-<!-- Third-party Libraries -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-messages/angular-messages.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-<script src="bower_components/satellizer/satellizer.js"></script>
-<script src="bower_components/ui-bootstrap/src/stackedMap/stackedMap.js"></script>
-<script src="bower_components/ui-bootstrap/src/modal/modal.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/underscore/underscore.js"></script>
-<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-<script src="bower_components/socket.io-client/socket.io.js"></script>
-<!-- Application Code -->
-<script src="app.js"></script>
-<script src="config.js"></script>
+    socket.on('disconnect', function() {
+      console.log('Socket disconnected');
+    });
 
-<script src="components/satellizer.password-strength.directive.js"></script>
-<script src="components/satellizer.password-match.directive.js"></script>
-<script src="components/confirm-dialog.directive.js"></script>
-<script src="components/validation.directives.js"></script>
-
-<script src="components/landing.controller.js"></script>
-<script src="components/navigation.controller.js"></script>
-
-<script src="security/login.controller.js"></script>
-<script src="security/logout.controller.js"></script>
-
-<script src="account/signup.controller.js"></script>
-<script src="account/account.controller.js"></script>
-<script src="account/account.service.js"></script>
-
-<script src="contact/contact.controller.js"></script>
-<script src="pricing/pricing.controller.js"></script>
-
-<script src="tasks/task-creation.controller.js"></script>
-<script src="tasks/task-index.controller.js"></script>
-<script src="tasks/tasks.service.js"></script>
-
-<script>
-  var socket = io.connect('http://localhost:3000/');
-
-  socket.on('connect', function() {
-    socket.emit('authenticate', {token : 'secret'});
-  });
-
-  socket.on('authenticated', function(msg) {
-    console.log('Authenticated');
-  });
-
-  socket.on('disconnect', function() {
-    console.log('Socket disconnected');
-  });
-
-  socket.on('error', function(data) {
-    console.error('sio error : ', data);
-  });
-</script>
-
-</body>
+    socket.on('error', function(data) {
+      console.error('sio error : ', data);
+    });
+    </script>
+  </body>
 </html>

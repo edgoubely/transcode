@@ -2,6 +2,7 @@ angular
   .module('Transcode')
   .controller('PricingCtrl', PricingCtrl);
 
-PricingCtrl.$inject = ['$scope', 'toastr'];
+PricingCtrl.$inject = ['$scope', 'toastr', '$http'];
 
-function PricingCtrl($scope, toastr) {}
+function PricingCtrl($scope, toastr, $http) {
+}
