@@ -22,7 +22,10 @@ dotenv.load({
 
 var app = express();
 var server = http.Server(app);
-var io = sio(server);
+var io = {
+  server: sio(server),
+  clients: []
+};
 
 app.set('port', process.env.PORT ||  3000);
 app.set('secret', process.env.SECRET);
@@ -103,17 +106,25 @@ server.listen(app.get('port'), function() {
  * Socket.IO
  */
 
-io.on('connection', function(socket) {
-  console.log('Client connected : ' + socket.id);
+io.server.on('connection', function(socket) {
+  socket.auth = false;
 
-  socket.on('authenticate', function(data) {
-    //TODO: check jwt
-    socket.emit('authenticated', true);
+  socket.on('authenticate', function(token) {
+    if (!token) return;
+
+    jwt.verify(token, app.get('secret'), function(err, user) {
+      if (err) return;
+      io.clients[socket.id] = user._id;
+      socket.emit('authenticated', true);
+      socket.auth = true;
+    });
   });
 
-  socket.on('disconnect', function() {
-    console.log('Client disconnected');
-  });
+  setTimeout(function() {
+    if (!socket.auth) {
+      socket.disconnect('unauthorized');
+    }
+  }, 1000);
 });
 
 module.exports = app;
