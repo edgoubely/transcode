@@ -44,7 +44,7 @@ var users = require('./controllers/users'),
   tasks = require('./controllers/tasks'),
   accounts = require('./controllers/accounts'),
   contact = require('./controllers/contact'),
-  paypal = require('./controllers/paypal');
+  notifications = require('./controllers/notifications');
 
 
 /**
@@ -93,7 +93,8 @@ app.put('/task', tasks.submitTask);
 app.post('/task/file', auth.isAuthenticatedOrGuest, tasks.fromFile);
 app.post('/task/url', auth.isAuthenticatedOrGuest, tasks.fromURL);
 
-app.post('/notifications', paypal.notifications(io));
+app.post('/notifications/ipn', notifications.ipn(io));
+app.post('/notifications/task', notifications.updateTaskStatus(io));
 
 /**
  *	Startup
@@ -117,7 +118,7 @@ io.server.on('connection', function(socket) {
 
     jwt.verify(token, app.get('secret'), function(err, user) {
       if (err) return;
-      io.clients[socket.id] = user._id;
+      io.clients[user.id] = socket.id;
       socket.emit('authenticated', true);
       socket.auth = true;
     });

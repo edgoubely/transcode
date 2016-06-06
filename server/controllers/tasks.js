@@ -56,31 +56,6 @@ exports.deleteTaskResult = function(req, res, next) {
 };
 
 /**
- * POST /task/{id}
- * Update a task status (Core request)
- */
-exports.updateStatus = function(req, res, next) {
-  req.assert('task_id').notEmpty();
-  req.assert('status').notEmpty();
-
-  if (req.validationErrors())
-    return res.status(403).json(req.validationErrors());
-
-  Task.findById({
-    _id: req.body.task_id
-  }, function(err, task) {
-    if (err)
-      return next(err);
-    task.status = req.body.status;
-    task.save(function(err) {
-      if (err)
-        return next(err);
-      res.status(200).end();
-    });
-  });
-};
-
-/**
  * POST /tasks
  * Complete a task construction and submit it to the Core if authorized.
  */
