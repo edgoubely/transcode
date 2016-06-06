@@ -43,7 +43,8 @@ app.set('videos-base-directory', process.env.VIDEO_UPLOADS_DIR || 'videos');
 var users = require('./controllers/users'),
   tasks = require('./controllers/tasks'),
   accounts = require('./controllers/accounts'),
-  contact = require('./controllers/contact');
+  contact = require('./controllers/contact'),
+  paypal = require('./controllers/paypal');
 
 
 /**
@@ -91,6 +92,8 @@ app.get('/task', auth.isAuthenticated, tasks.index);
 app.put('/task', tasks.submitTask);
 app.post('/task/file', auth.isAuthenticatedOrGuest, tasks.fromFile);
 app.post('/task/url', auth.isAuthenticatedOrGuest, tasks.fromURL);
+
+app.post('/notifications', paypal.notifications(io));
 
 /**
  *	Startup
