@@ -8,10 +8,11 @@ SignupCtrl.$inject = [
   '$auth',
   'Account',
   'Tasks',
-  'toastr'
+  'toastr',
+  'TcNotifs'
 ];
 
-function SignupCtrl($scope, $state, $auth, Account, Tasks, toastr) {
+function SignupCtrl($scope, $state, $auth, Account, Tasks, toastr, TcNotifs) {
   $scope.signup = function() {
     var data = $scope.user
     // if user has pending task as guest...
@@ -24,7 +25,7 @@ function SignupCtrl($scope, $state, $auth, Account, Tasks, toastr) {
     $auth.signup(data)
       .then(function(response) {
         toastr.info('You have successfully created a new account and have been signed-in');
-
+        TcNotifs.connect();
         Account.setUser(response.data.user);
         $auth.setToken(response.data.token);
         $state.go('home');

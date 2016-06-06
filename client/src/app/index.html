@@ -67,6 +67,7 @@
     <script src="components/validation.directives.js"></script>
     <script src="components/landing.controller.js"></script>
     <script src="components/navigation.controller.js"></script>
+    <script src="components/notifications.service.js"></script>
     <script src="security/login.controller.js"></script>
     <script src="security/logout.controller.js"></script>
     <script src="account/signup.controller.js"></script>
@@ -77,23 +78,5 @@
     <script src="tasks/task-creation.controller.js"></script>
     <script src="tasks/task-index.controller.js"></script>
     <script src="tasks/tasks.service.js"></script>
-    <script>
-    var socket = io.connect('http://localhost:3000/');
-      socket.on('connect', function() {
-      socket.emit('authenticate', {token : 'secret'});
-    });
-
-    socket.on('authenticated', function(msg) {
-      console.log('Authenticated');
-    });
-
-    socket.on('disconnect', function() {
-      console.log('Socket disconnected');
-    });
-
-    socket.on('error', function(data) {
-      console.error('sio error : ', data);
-    });
-    </script>
   </body>
 </html>

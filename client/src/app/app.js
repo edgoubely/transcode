@@ -123,10 +123,11 @@ angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimat
       positionClass: 'toast-bottom-right'
     });
   })
-  .run(function($rootScope, $auth, Account, Tasks) {
+  .run(function($rootScope, $auth, Account, Tasks, TcNotifs) {
     Tasks.getCurrentTask();
     
     if ($auth.isAuthenticated()) {
+      TcNotifs.connect();
       try {
         $rootScope.user = localStorage.getItem('user') ? angular.fromJson(localStorage.getItem('user')) : {};
       } catch (e) {
