@@ -17,13 +17,14 @@ var
  * Retrieve the user's tasks.
  */
 exports.index = function(req, res, next) {
-  Task.find({
-    user: req.user.id
-  }, function(err, tasks) {
-    if (err)
-      return next(err);
-    res.json(tasks);
-  });
+  Task.find({ user: req.user.id })
+    .limit(15)
+    .sort({ submissionDate: -1 })
+    .exec(function(err, tasks) {
+      if (err)
+        return next(err);
+      res.json(tasks);
+    });
 };
 
 /**
@@ -70,7 +71,8 @@ exports.submitTask = function(req, res, next) {
   Task.findById(req.body.task_id)
     .populate('user')
     .exec(function(err, task) {
-      task.purpose = req.body.command;
+      task.command = req.body.command;
+      task.submissionDate = new Date();
       task.target.format = req.body.format;
       //TODO: compute cost
       if (task.user) {
@@ -79,8 +81,10 @@ exports.submitTask = function(req, res, next) {
           done(task, 'waiting_for_payment');
         } else {
           task.user.taskSubmissions++;
-          Core.pushJob(task, function(err, jobId) {
-            done(task, 'queued');
+          task.user.save(function(err) {
+            Core.pushJob(task, function(err, jobId) {
+              done(task, 'queued');
+            });
           });
         }
       } else {
@@ -91,7 +95,6 @@ exports.submitTask = function(req, res, next) {
         task.status = status;
         task.save(function(err, task) {
           if (err) {
-            console.log(err);
             return next(err);
           }
           res.status(200);
@@ -119,7 +122,7 @@ exports.fromURL = function(req, res, next) {
 
   initTask(req, task, function(err, stream) {
     stream.on('finish', function(data) {
-      task.displayName = req.body.video_url;
+      task.name = req.body.video_url;
       probeSourceAndSaveTask(task, res);
     });
     // TODO: check response content type
@@ -140,7 +143,7 @@ exports.fromFile = function(req, res, next) {
 
   busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
     initTask(req, task, function(err, stream) {
-      task.displayName = filename;
+      task.name = filename;
       file.pipe(stream);
     });
   });
@@ -179,7 +182,8 @@ function probeSourceAndSaveTask(task, res) {
       res.status(200);
       res.json({
         task_id: task._id,
-        source: task.source
+        source: task.source,
+        name: task.name
       });
     });
   });

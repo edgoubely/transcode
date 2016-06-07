@@ -7,7 +7,7 @@ function Core(opts) {
 
 Core.prototype.pushJob = function(task, cb) {
   var params = {
-    command: task.purpose,
+    command: task.command,
     format: task.target.format,
     file: path.join(task.source.path, task.source.filename)
   };

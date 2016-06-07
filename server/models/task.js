@@ -7,14 +7,14 @@ var taskSchema = new Schema({
     type: ObjectId,
     ref: 'User'
   },
-  purpose: String,
+  name: String,
+  command: String,
   status: String,
   submissionDate: Date,
   computeTime: Number,
 
   source: {
     infos: String,
-    displayName: String,
     filename: String,
     path: String,
     date: {

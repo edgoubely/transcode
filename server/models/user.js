@@ -26,6 +26,10 @@ var userSchema = new Schema({
     type: ObjectId,
     ref: 'SubscriptionPlan'
   },
+  taskSubmissions: {
+    type: Number,
+    default: 0
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   isLocalAccount: {
