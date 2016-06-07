@@ -77,6 +77,7 @@ function Tasks($http, $rootScope, $q, TcConfig, Upload) {
 
   service.removeLocalTask = function() {
     localStorage.removeItem('current_task');
+    delete this.currentTask;
   };
 
   service.saveCurrentTask = function() {

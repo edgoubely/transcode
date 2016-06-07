@@ -83,7 +83,6 @@ function TaskCreationCtrl($scope, TcConfig, toastr, Tasks, $state, $auth) {
 
   function abortTaskCreation() {
     Tasks.removeLocalTask();
-    delete Tasks.currentTask;
     delete $scope.currentTask;
     $state.go('home');
   }
