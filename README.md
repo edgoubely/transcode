@@ -40,7 +40,7 @@ You must specify at least these variables :
  * PORT: the server listening port.
  * SECRET: the json web token signature’s secret key.
  * TOKEN_EXPIRES: the token expiration time.
- * DB: the database URL (in the form mongodb://<hostname>:<port>/<db_name>). Note that if you omit the port, Mongo will use the default one: 27017.
+ * DB: the database URL (in the form `mongodb://<hostname>:<port>/<db_name>`). Note that if you omit the port, Mongo will use the default one: 27017.
  * VIDEO_UPLOADS_DIR is where the app will store user uploads and task results.
 
 For the social authentification to work, you need a [Facebook](https://developers.facebook.com) or [Google](https://developers.google.com) developper account and set the following variables:
