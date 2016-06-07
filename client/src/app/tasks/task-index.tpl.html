@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="task in tasks">
-          <td>{{task.source.date}}</td>
+          <td>{{task.source.date | elapsed}}</td>
           <td>{{task.source.displayName}}</td>
           <td>{{task.status}}</td>
         </tr>
