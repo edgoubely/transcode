@@ -6,4 +6,9 @@ PricingCtrl.$inject = ['$rootScope', '$scope', '$auth', 'Account'];
 
 function PricingCtrl($rootScope, $scope, $auth, Account) {
   $scope.isAuthenticated = $auth.isAuthenticated;
+  $scope.submit = submit;
+
+  function submit() {
+    return false;
+  }
 }

@@ -15,24 +15,24 @@ angular.module('Transcode')
 
         element.bind('keyup', function() {
           var matches = {
-                positive: {},
-                negative: {}
-              },
-              counts = {
-                positive: {},
-                negative: {}
-              },
-              tmp,
-              strength = 0,
-              letters = 'abcdefghijklmnopqrstuvwxyz',
-              numbers = '01234567890',
-              symbols = '\\!@#$%&/()=?¿',
-              strValue;
+              positive: {},
+              negative: {}
+            },
+            counts = {
+              positive: {},
+              negative: {}
+            },
+            tmp,
+            strength = 0,
+            letters = 'abcdefghijklmnopqrstuvwxyz',
+            numbers = '01234567890',
+            symbols = '\\!@#$%&/()=?¿',
+            strValue;
 
           angular.forEach(dots, function(el) {
             el.style.backgroundColor = '#ebeef1';
           });
-          
+
           if (ngModel.$viewValue) {
             // Increase strength level
             matches.positive.lower = ngModel.$viewValue.match(/[a-z]/g);

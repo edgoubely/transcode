@@ -1,8 +1,8 @@
 angular
   .module('Transcode')
-  .controller('ProfileCtrl', ProfileCtrl);
+  .controller('AccountCtrl', AccountCtrl);
 
-ProfileCtrl.$inject = [
+AccountCtrl.$inject = [
   '$scope',
   '$auth',
   '$location',
@@ -12,14 +12,14 @@ ProfileCtrl.$inject = [
   'Account'
 ];
 
-function ProfileCtrl($scope, $auth, $location, $rootScope, $uibModal, toastr, Account) {
+function AccountCtrl($scope, $auth, $location, $rootScope, $uibModal, toastr, Account) {
   $scope.willDeleteAccount = willDeleteAccount;
   $scope.updateProfile = updateProfile;
   $scope.deleteAccount = deleteAccount;
   $scope.getProfile = getProfile;
   $scope.unlink = unlink;
   $scope.link = link;
-  
+
   activate();
 
   function activate() {

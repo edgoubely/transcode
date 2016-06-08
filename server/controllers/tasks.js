@@ -178,6 +178,7 @@ function initTask(req, task, cb) {
 function probeSourceAndSaveTask(task, res) {
   probe(path.join(task.source.path, task.source.filename), function(err, probeData) {
     task.source.infos = JSON.stringify(probeData);
+    task.status = 'waiting_for_command';
     task.save(function(err, task) {
       res.status(200);
       res.json({

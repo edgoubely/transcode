@@ -1,4 +1,18 @@
-angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimate', 'toastr', 'ui.router', 'ui.bootstrap.modal', 'satellizer', 'ngFileUpload'])
+angular
+  .module('Transcode', [
+    'ngResource',
+    'ngMessages',
+    'ngSanitize',
+    'ngAnimate',
+    'toastr',
+    'ui.router',
+    'ui.bootstrap.modal',
+    'satellizer',
+    'ngFileUpload'
+  ]);
+
+angular
+  .module('Transcode')
   .config(function($stateProvider, $urlRouterProvider, $authProvider, toastrConfig, TcConfig) {
     $stateProvider
       .state('home', {
@@ -30,7 +44,7 @@ angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimat
       .state('profile', {
         url: '/profile',
         templateUrl: 'account/account.tpl.html',
-        controller: 'ProfileCtrl',
+        controller: 'AccountCtrl',
         resolve: {
           loginRequired: loginRequired
         }
@@ -122,10 +136,13 @@ angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimat
     angular.extend(toastrConfig, {
       positionClass: 'toast-bottom-right'
     });
-  })
+  });
+
+angular
+  .module('Transcode')
   .run(function($rootScope, $auth, Account, Tasks, TcNotifs) {
     Tasks.getCurrentTask();
-    
+
     if ($auth.isAuthenticated()) {
       TcNotifs.connect();
       try {
