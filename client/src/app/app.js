@@ -7,6 +7,7 @@ angular
     'toastr',
     'ui.router',
     'ui.bootstrap.modal',
+    'ui.bootstrap.carousel',
     'satellizer',
     'ngFileUpload'
   ]);

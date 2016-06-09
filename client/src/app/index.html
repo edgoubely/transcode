@@ -36,12 +36,12 @@
 					  	<p><span data-icon="U"></span>&nbsp;Username</p>
 				  	</li>
 				  	<li ng-if="isAuthenticated()">
-					  	<a href="/#/" tc-menu-hide>
+					  	<a href="/#/logout" tc-menu-hide>
 						  	<p>Logout</p>
 					  	</a>
 				  	</li>
 				  	<li ng-if="!isAuthenticated()">
-					  	<a href="/#/register" class="notlogged" tc-menu-hide>
+					  	<a href="/#/signup" class="notlogged" tc-menu-hide>
 						  	<p>Register</p>
 					  	</a>
 				  	</li>
@@ -57,6 +57,9 @@
 				  	<li>
 					  	<a href="/#/getstarted" tc-menu-hide><p>Get started</p></a>
 				  	</li>
+            <li ng-if="user">
+              <a href="/#/tasks" tc-menu-hide><p>Tasks</p></a>
+            </li>
 				  	<li>
 					  	<a href="/#/pricing" tc-menu-hide><p>Pricing</p></a>
 				  	</li>
