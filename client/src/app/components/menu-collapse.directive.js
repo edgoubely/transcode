@@ -25,7 +25,7 @@
 		};
 	}]);*/
 	
-angular.module('Transcode').directive('tcMenuColapse', ['$animate',
+angular.module('Transcode').directive('tcMenuCollapse', ['$animate',
     function ($animate) {
         return {
             link: function (scope, elem, attrs) {
