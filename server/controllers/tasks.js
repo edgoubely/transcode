@@ -28,6 +28,28 @@ exports.index = function(req, res, next) {
 };
 
 /**
+ * GET /tasks/{id}/result
+ * Download the task result
+ */
+ exports.downloadTaskResult = function(req, res, next) {
+  Task.findById(req.params.id, function(err, task) {
+    if (err) {
+      return next(err);
+    }
+    var resultLocation = path.join(req.app.get('video'), task.user, task.target.filename );
+    resultLocation += '.' + task.target.format;
+
+    fs.exists(resultLocation, function(exists) {
+      if (!exists) {
+        return res.status(404).end();
+      }
+      var file = fs.createReadStream(resultLocation);
+      file.pipe(res);
+    });
+  });
+ };
+
+/**
  * DELETE /tasks/{id}
  * Delete task result file
  */

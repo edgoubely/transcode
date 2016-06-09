@@ -75,6 +75,10 @@ function Tasks($http, $rootScope, $q, TcConfig, Upload) {
     return deferred.promise;
   };
 
+  // service.getTaskResult = function(taskId) {
+  //   return $http.get(baseUrl + taskId + '/result');
+  // }
+
   service.removeLocalTask = function() {
     localStorage.removeItem('current_task');
     delete this.currentTask;

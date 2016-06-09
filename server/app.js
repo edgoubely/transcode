@@ -90,6 +90,7 @@ app.post('/contact', contact.postContact);
 
 app.get('/task', auth.isAuthenticated, tasks.index);
 app.put('/task', tasks.submitTask);
+app.get('/task/:id/result', auth.isAuthenticated, tasks.downloadTaskResult);
 app.post('/task/file', auth.isAuthenticatedOrGuest, tasks.fromFile);
 app.post('/task/url', auth.isAuthenticatedOrGuest, tasks.fromURL);
 

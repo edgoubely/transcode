@@ -15,10 +15,10 @@ function TaskIndexCtrl($scope, TcConfig, Tasks, TcNotifs) {
   Tasks.getUserTasks()
     .then(function(response) {
       $scope.tasks = response.data;
-
       for (var i = $scope.tasks.length - 1; i >= 0; i--) {
-        var tst_date = new Date($scope.tasks[i].source.date);
-        console.log(tst_date.toString());
+        if ($scope.tasks[i].target) {
+          $scope.tasks[i].download = TcConfig.API + 'task/' + $scope.tasks[i].id + '/result';
+        }
       }
     })
     .catch(function() {

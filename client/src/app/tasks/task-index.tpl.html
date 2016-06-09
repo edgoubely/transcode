@@ -13,7 +13,7 @@
         <tr ng-repeat="task in tasks">
           <td>{{task.submissionDate | elapsed}}</td>
           <td>{{task.name}}</td>
-          <td>{{task.status}}</td>
+          <td>{{task.status}}&nbsp;<a target="_self" ng-href="{{task.id}}" ng-show="task.target.filename"></a></td>
         </tr>
       </tbody>
     </table>
