@@ -11,7 +11,6 @@
     <link href="styles/angular-toastr.css" rel="stylesheet">
     <link href="styles/style2.css" rel="stylesheet">
     <link href="styles/base.css" rel="stylesheet">
-    <link href="styles/freelancer.css" rel="stylesheet">
   </head>
   <body>
     <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
@@ -29,20 +28,20 @@
 	      	</div>
 		  	<div class="navitems-wrapper users-wrapper">
 			  	<ul>
-				  	<li class="login-item">
+				  	<li class="login-item" ng-if="isAuthenticated()">
 					  	<p><span data-icon="U"></span>&nbsp;Username</p>
 				  	</li>
-				  	<li>
+				  	<li ng-if="isAuthenticated()">
 					  	<a href="/#/">
 						  	<p>Logout</p>
 					  	</a>
 				  	</li>
-				  	<li>
+				  	<li ng-if="!isAuthenticated()">
 					  	<a href="/#/register" class="notlogged">
 						  	<p>Register</p>
 					  	</a>
 				  	</li>
-				  	<li>
+				  	<li ng-if="!isAuthenticated()">
 					  	<a href="/#/login" class="notlogged">
 						  	<p>Login</p>
 					  	</a>
@@ -71,7 +70,7 @@
 	  	
 		<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="/" ng-click="menu-collapse">
+					<a class="navbar-brand" tc-menu-collapse>
 						<span data-icon="h">
 					</a>
 				</div>
@@ -134,6 +133,7 @@
     <script src="components/satellizer.password-match.directive.js"></script>
     <script src="components/confirm-dialog.directive.js"></script>
     <script src="components/validation.directives.js"></script>
+    <script src="components/menu-collapse.directive.js"></script>
     <script src="components/landing.controller.js"></script>
     <script src="components/navigation.controller.js"></script>
     <script src="components/notifications.service.js"></script>
