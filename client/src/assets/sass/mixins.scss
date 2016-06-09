@@ -1,0 +1,169 @@
+/**
+ *	SASS
+ *	mixins.scss
+ * 
+ *	@author userstudio
+ *	Copyright (c) 2013, User Studio (USER.IO). All rights reserved.
+ * 
+ *	Our own mixins
+ *	
+ */
+
+
+@mixin display-block {
+  display: block !important;
+  display: inline-block; /*old IE*/
+}
+
+@mixin dblock {
+  display: block !important;
+  display: inline-block; /*old IE*/
+}
+
+@mixin border-box {
+	@include box-sizing(border-box);
+}
+
+@mixin bbox {
+	@include box-sizing(border-box);
+}
+
+@mixin fleft {
+	float: left;
+	clear: none;
+}
+
+@mixin fright {
+	float: right;
+	clear: none;
+}
+
+@mixin intrinsic {
+	width:  intrinsic;         /* Safari/WebKit */
+    width:  -moz-max-content;	/* Firefox/Gecko */
+	width: -webkit-max-content; /* Chrome */
+}
+
+@mixin us-radial-gradient($gradiant-color, $background-color) {
+	background-image: -webkit-radial-gradient(50% 5%, ellipse farthest-side, $gradiant-color, $background-color 100%);
+	background-image: -moz-radial-gradient(50% 5%, ellipse farthest-side, $gradiant-color, $background-color 100%);
+	background-image: -o-radial-gradient(50% 5%, ellipse farthest-side, $gradiant-color, $background-color 100%);
+	background-image: -ms-radial-gradient(50% 5%, ellipse farthest-side, $gradiant-color, $background-color 100%);
+	background-image: radial-gradient(50% 5%, ellipse farthest-side, $gradiant-color, $background-color 100%);
+}
+
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin transition-duration($duration) {
+    -moz-transition-property:    $duration;
+    -o-transition-property:      $duration;
+    -webkit-transition-property: $duration;
+    transition-property:         $duration;
+}
+
+@mixin transition-all($duration) {
+	@include transition-property(all);
+	@include transition-duration($duration);
+}
+
+@mixin min-1280 {
+	max-width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+	@include bbox;
+	display: block;
+}
+
+@mixin min-1440 {
+	max-width: 1440px;
+	margin-left: auto;
+	margin-right: auto;
+	@include bbox;
+	display: block;
+}
+
+@mixin section-padding {
+	padding-top: $margin-top-bottom*2;
+	padding-bottom: $margin-top-bottom*5;
+}
+
+@mixin section-padding-with-back {
+	margin-top: $margin-top-bottom*2;
+	padding-bottom: $margin-top-bottom*5;
+}
+
+@mixin user-clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@mixin us-clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@mixin trans($attr,$duration) {
+	@include transition-property($attr);
+	@include transition-duration($duration);
+}
+
+$mobile-landscape-width: 480px;
+$large-mobile-landscape-width: 580px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$large-desktop-width: 1280px;
+$hd-width: 1440px;
+$full-hd-width: 1920px;
+
+@mixin mobile-landscape {
+  @media (min-width: #{$mobile-landscape-width}) {
+    @content;
+  }
+}
+
+@mixin large-mobile-landscape {
+  @media (min-width: #{$large-mobile-landscape-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: #{$large-desktop-width}) {
+    @content;
+  }
+}
+
+@mixin low-hd {
+  @media (min-width: #{$hd-width}) {
+    @content;
+  }
+}
+
+@mixin full-hd {
+  @media (min-width: #{$full-hd-width}) {
+    @content;
+  }
+}

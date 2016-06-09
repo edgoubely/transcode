@@ -10,11 +10,77 @@
     <link href="styles/bootstrap.css" rel="stylesheet">
     <link href="styles/angular-toastr.css" rel="stylesheet">
     <link href="styles/style2.css" rel="stylesheet">
+    <link href="styles/base.css" rel="stylesheet">
     <link href="styles/freelancer.css" rel="stylesheet">
   </head>
   <body>
     <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
-      <div class="container">
+    
+    	<!--div class="nav-filter filter-appears"-->
+    	<div class="nav-filter">
+	      	<div class="close-button">
+		      	<span data-icon="c"></span>
+	      	</div>
+      	</div>
+	  	<!--nav class="nav-menu menu-appears" id="menu"-->
+	  	<nav class="nav-menu" id="menu">
+	  		<div class="close-button">
+		      	<span data-icon="c"></span>
+	      	</div>
+		  	<div class="navitems-wrapper users-wrapper">
+			  	<ul>
+				  	<li class="login-item">
+					  	<p><span data-icon="U"></span>&nbsp;Username</p>
+				  	</li>
+				  	<li>
+					  	<a href="/#/">
+						  	<p>Logout</p>
+					  	</a>
+				  	</li>
+				  	<li>
+					  	<a href="/#/register" class="notlogged">
+						  	<p>Register</p>
+					  	</a>
+				  	</li>
+				  	<li>
+					  	<a href="/#/login" class="notlogged">
+						  	<p>Login</p>
+					  	</a>
+				  	</li>
+				  	<hr>
+				  	<li>
+					  	<a href="/#/home" class="selected"><p>Home</p></a>
+				  	</li>
+				  	<li>
+					  	<a href="/#/getstarted"><p>Get started</p></a>
+				  	</li>
+				  	<li>
+					  	<a href="/#/pricing"><p>Pricing</p></a>
+				  	</li>
+				  	<li>
+					  	<a href="/#/contact"><p>Contact</p></a>
+				  	</li>
+				  	<hr class="menu-end">
+					<li class="hand-coded">
+						<p>Hand-coded with love in Paris</p>
+						<p>Copyright 2012-2016 &#169; Transcode, tous droits réservés</p>
+			    	</li>
+			  	</ul>
+		  	</div>
+	  	</nav>
+	  	
+		<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/" ng-click="menu-collapse">
+						<span data-icon="h">
+					</a>
+				</div>
+			</div>
+		</div>
+
+
+
+      <!--div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">&nbsp;Transcode</a>
         </div>
@@ -40,7 +106,10 @@
           <li><a href="/#/logout">Logout</a></li>
         </ul>
       </div>
-    </div>
+    </div-->
+    
+    
+    
     <div ui-view></div>
     <!-- Third-party Libraries -->
     <script src="bower_components/angular/angular.js"></script>
