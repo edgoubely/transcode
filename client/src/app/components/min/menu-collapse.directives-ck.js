@@ -1,0 +1,1 @@
+angular.module("Transcode").directive("tcMenuColapse",["$animate",function(n){return{link:function(e,a,i){a.on("click",function(){var e=angular.element(this);n.addClass(e,"spin",function(){e.removeClass("spin")})})}}}]);
