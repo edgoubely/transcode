@@ -8,16 +8,9 @@ var ipn = require('paypal-ipn'),
  * Get notified when the core has finished or started a job for a task.
  */
 exports.updateTaskStatus = function(io) {
-  return function(req, res, next) {
-    req.assert('job_id').notEmpty();
-    req.assert('status').notEmpty();
-
-    if (req.validationErrors())
-      return res.status(403).json(req.validationErrors());
-
-    // TODO: replace task id by job id (we keep task id for the tests)
-    Task.findById({
-      _id: req.body.job_id
+  return function(req, res, next) {    
+    Task.findOne({
+      job: req.body.id
     }, function(err, task) {
       if (err)
         return next(err);

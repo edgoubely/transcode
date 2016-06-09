@@ -99,7 +99,9 @@ function TaskCreationCtrl($scope, TcConfig, toastr, Tasks, $state, $auth) {
           $state.go('tasks');
         } else {
           toastr.warning('You must signup to get your result'); // TODO: make persistent
-          $state.go('signup');
+          $state.go('signup', {
+            hasPendingTask: true
+          });
         }
       })
       .catch(function(response) {

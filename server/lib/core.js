@@ -8,15 +8,22 @@ function Core(opts) {
 Core.prototype.pushJob = function(task, cb) {
   var params = {
     command: task.command,
-    format: task.target.format,
-    file: path.join(task.source.path, task.source.filename)
+    fromFile: path.join(task.source.path, task.source.filename),
+    toFile: task.source.filename + '.' + task.target.format
   };
   
-  request.get({
-    url: this.url,
+  var url = 'http://' + this.url + '/jobs';
+
+  request.post({
+    url: url,
     qs: params
   }, function(err, response, body) {
-    cb(err, body.job.id);
+    if (err) {
+      console.error(err);
+    }
+
+    console.log(body);
+    cb(err, JSON.parse(body).job.id);
   });
 };
 

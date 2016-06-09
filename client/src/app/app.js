@@ -32,6 +32,9 @@ angular
         url: '/signup',
         templateUrl: 'account/signup.tpl.html',
         controller: 'SignupCtrl',
+        params: {
+          hasPendingTask: false
+        },
         resolve: {
           skipIfLoggedIn: skipIfLoggedIn
         }

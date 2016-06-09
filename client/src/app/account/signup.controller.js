@@ -9,10 +9,15 @@ SignupCtrl.$inject = [
   'Account',
   'Tasks',
   'toastr',
-  'TcNotifs'
+  'TcNotifs',
+  '$stateParams'
 ];
 
-function SignupCtrl($scope, $state, $auth, Account, Tasks, toastr, TcNotifs) {
+function SignupCtrl($scope, $state, $auth, Account, Tasks, toastr, TcNotifs, $stateParams) {
+  if ($stateParams.hasPendingTask) {
+    $scope.hasPendingTask = true;
+  }
+
   $scope.signup = function() {
     var data = $scope.user
     // if user has pending task as guest...
@@ -31,7 +36,7 @@ function SignupCtrl($scope, $state, $auth, Account, Tasks, toastr, TcNotifs) {
         $state.go('home');
       })
       .catch(function(response) {
-        toastr.error('An error has occurred');
+        toastr.error(response.data.message);
       });
   };
 }
