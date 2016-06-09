@@ -12,14 +12,22 @@ $nav-width : 400px;
 .navbar {
 	position: relative;
 	width: 100%;
-	height: 100%;
+	height: auto;
 	.close-button {
 		color: white;
-		position: absolute;
-		top: $margin*4;
 		font-size: 35px;
 		cursor: pointer;
 		text-align: right;
+		a {
+			color: white;
+			text-decoration: none;
+			&:hover {
+				color: $linkColor;
+			}
+		}
+	}
+	.nav-wrapper {
+		background-color: rgba($navColor, 0.2);
 	}
 }
 
@@ -33,48 +41,58 @@ $nav-width : 400px;
     left: 0;
     background-color: rgba(0,0,0,0.3);
     padding-left: $nav-width;
-	@include transition-duration(0.5);
 	opacity: 0;
 	z-index: -100;
+	-webkit-transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 	&.filter-appears {
 		opacity: 1;
 		z-index: 9;
 	}
 	.close-button {
+		position: absolute;
 		left: $nav-width + $margin*3;
-		text-shadow: 4px 0px 4px #9b9b9b;	
+		top: 20px;
+		text-shadow: 4px 0px 4px #9b9b9b;
 	}
 }
 
 #menu {
 	background-color: $darkPistachio;
-	padding: $margin*4 $margin*3;
+	padding: $margin*2 $margin*3;
 	height: 100%;
 	width: 100%;
 	position: fixed;
 	top: 0;
 	left: -100%;
 	z-index: 10;
-	@include transition-duration(0.15);
+	-webkit-transition: left 0.5s;
+	-moz-transition: left 0.5s;
+	-o-transition: left 0.5s;
+	transition: left 0.5s;
 	&.menu-appears {
 		left: 0;
 	}
 	.close-button {
-		right: $margin*3;
+		position: relative;
 	}
 	.navitems-wrapper {
 		position: relative;
-		height: 100%;
+		margin-top: $margin;
+		z-index: 11;
+		height: auto;
 		width: 100%;
 		ul {
-		padding-left: 0;
+			padding-left: 0;
 			li {
 				display: block;
 				color: white;
 				text-transform: uppercase;
-				letter-spacing: 2px;
+				letter-spacing: 3px;
 				font-size: 23px;
-				margin-bottom: $margin/4;
+				margin-bottom: $margin*1.5;
 				a {
 					text-decoration: none;
 					color: white;
@@ -106,11 +124,13 @@ $nav-width : 400px;
 			}
 		}
 		.hand-coded {
-			font-size: 12px;
+			    font-size: 12px;
+				line-height: 16px;
 			p {
 				text-align: center;
 				width: 100%;
-				letter-spacing: 2px;
+				letter-spacing: 3px;
+				margin-bottom: $margin/2;
 			}
 		}
 	}

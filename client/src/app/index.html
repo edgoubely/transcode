@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Transcode</title>
+    <!-- Fonts from Google fonts-->
+	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700,800,300italic,400italic,600italic,700italic,800italic'>
     <link href="favicon.png" rel="shortcut icon">
     <link href="styles/ionicons.min.css" rel="stylesheet">
     <link href="styles/font-awesome.css" rel="stylesheet">
@@ -12,19 +14,21 @@
     <link href="styles/style2.css" rel="stylesheet">
     <link href="styles/base.css" rel="stylesheet">
   </head>
-  <body>
+  <body> 
     <div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
     
-    	<!--div class="nav-filter filter-appears"-->
     	<div class="nav-filter">
 	      	<div class="close-button">
-		      	<span data-icon="c"></span>
+		      	<a tc-menu-hide>
+		      		<span data-icon="c"></span>
+	  			</a>
 	      	</div>
       	</div>
-	  	<!--nav class="nav-menu menu-appears" id="menu"-->
 	  	<nav class="nav-menu" id="menu">
 	  		<div class="close-button">
-		      	<span data-icon="c"></span>
+	  			<a tc-menu-hide>
+		      		<span data-icon="c"></span>
+	  			</a>
 	      	</div>
 		  	<div class="navitems-wrapper users-wrapper">
 			  	<ul>
@@ -32,32 +36,32 @@
 					  	<p><span data-icon="U"></span>&nbsp;Username</p>
 				  	</li>
 				  	<li ng-if="isAuthenticated()">
-					  	<a href="/#/">
+					  	<a href="/#/" tc-menu-hide>
 						  	<p>Logout</p>
 					  	</a>
 				  	</li>
 				  	<li ng-if="!isAuthenticated()">
-					  	<a href="/#/register" class="notlogged">
+					  	<a href="/#/register" class="notlogged" tc-menu-hide>
 						  	<p>Register</p>
 					  	</a>
 				  	</li>
 				  	<li ng-if="!isAuthenticated()">
-					  	<a href="/#/login" class="notlogged">
+					  	<a href="/#/login" class="notlogged" tc-menu-hide>
 						  	<p>Login</p>
 					  	</a>
 				  	</li>
 				  	<hr>
 				  	<li>
-					  	<a href="/#/home" class="selected"><p>Home</p></a>
+					  	<a href="/#/home" class="selected" tc-menu-hide><p>Home</p></a>
 				  	</li>
 				  	<li>
-					  	<a href="/#/getstarted"><p>Get started</p></a>
+					  	<a href="/#/getstarted" tc-menu-hide><p>Get started</p></a>
 				  	</li>
 				  	<li>
-					  	<a href="/#/pricing"><p>Pricing</p></a>
+					  	<a href="/#/pricing" tc-menu-hide><p>Pricing</p></a>
 				  	</li>
 				  	<li>
-					  	<a href="/#/contact"><p>Contact</p></a>
+					  	<a href="/#/contact" tc-menu-hide><p>Contact</p></a>
 				  	</li>
 				  	<hr class="menu-end">
 					<li class="hand-coded">
@@ -68,7 +72,8 @@
 		  	</div>
 	  	</nav>
 	  	
-		<div class="container">
+	  	<div class="nav-wrapper">
+		  	<div class="container">
 				<div class="navbar-header">
 					<a class="navbar-brand" tc-menu-collapse>
 						<span data-icon="h">
@@ -76,8 +81,8 @@
 				</div>
 			</div>
 		</div>
-
-
+	 </div>
+	
 
       <!--div class="container">
         <div class="navbar-header">
@@ -120,6 +125,7 @@
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="bower_components/satellizer/satellizer.js"></script>
     <script src="bower_components/ui-bootstrap/src/stackedMap/stackedMap.js"></script>
+    <script src="bower_components/ui-bootstrap/src/carousel/carousel.js"></script>
     <script src="bower_components/ui-bootstrap/src/modal/modal.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
@@ -147,5 +153,7 @@
     <script src="tasks/task-creation.controller.js"></script>
     <script src="tasks/task-index.controller.js"></script>
     <script src="tasks/tasks.service.js"></script>
+    
+    
   </body>
 </html>

@@ -1,12 +1,41 @@
+<div>
+  <div style="height: 305px">
+    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" template-url="template/carousel/carousel.html">
+      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" template-url="../template/carousel/slide.html">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Slide {{slide.id}}</h4>
+          <p>{{slide.text}}</p>
+        </div>
+      </uib-slide>
+    </uib-carousel>
+  </div>
+</div>
+
+<!--div ng-controller="CarouselDemoCtrl">
+	<div style="height: 305px">
+		<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+			<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+				<img ng-src="{{slide.image}}" style="margin:auto;">
+				<div class="carousel-caption">
+					<h4>Slide {{slide.id}}</h4>
+					<p>{{slide.text}}</p>
+				</div>
+			</uib-slide>
+		</uib-carousel>
+	</div>
+</div-->
+	
+
 <div class="container">
       <div class="row">
-        <div class="col-sm-offset-3 col-sm-6 text-center">
+        <div class="col-sm-12 col-md-6 text-center">
           <h3>Convert any media to any format</h3>
           <p>It's fast and easy. Keep your converted files on the cloud, so that you can get them from anywhere and convert them again to another format. 
             Choose between hundreds of video and audio formats.</p>
           <p><a class="btn btn-primary" href="/#/getstarted">Try it »</a></p>
         </div>
-        <div class="col-sm-offset-3 col-sm-6 text-center">
+        <div class="col-sm-12 col-md-6 text-center">
           <h3>Extract audio from a video</h3>
           <p>Create your own soundtracks from a movie you like. Or just give a YouTube URL and retrieve it's audio in any format you like.</p>
           <p><a class="btn btn-primary" href="/#/getstarted">Try it »</a></p>

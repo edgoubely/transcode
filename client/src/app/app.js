@@ -1,4 +1,4 @@
-angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimate', 'toastr', 'ui.router', 'ui.bootstrap.modal', 'satellizer', 'ngFileUpload'])
+angular.module('Transcode', ['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimate', 'toastr', 'ui.router', 'ui.bootstrap.modal', 'satellizer', 'ngFileUpload', 'ui.bootstrap.carousel'])
   .config(function($stateProvider, $urlRouterProvider, $authProvider, toastrConfig, TcConfig) {
     $stateProvider
       .state('home', {

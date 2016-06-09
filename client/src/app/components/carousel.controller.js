@@ -1,11 +1,12 @@
+
+// CAROUSEL
+//angular.module('Transcode', ['ngAnimate', 'ui.bootstrap']);
+//['ngResource', 'ngMessages', 'ngSanitize', 'ngAnimate', 'toastr', 'ui.router', 'ui.bootstrap.modal', 'satellizer', 'ngFileUpload']
+
 angular
-  .module('Transcode')
-  .controller('HomeCtrl', HomeCtrl);
-
-HomeCtrl.$inject = ['$scope', '$http'];
-
-function HomeCtrl($scope, $http) {
-	$scope.myInterval = 5000;
+	.module('Transcode', ['ui.bootstrap.carousel'])
+	.controller('CarouselDemoCtrl', function ($scope) {
+  $scope.myInterval = 5000;
   $scope.noWrapSlides = false;
   $scope.active = 0;
   var slides = $scope.slides = [];
@@ -60,8 +61,4 @@ function HomeCtrl($scope, $http) {
 
     return array;
   }
-	
-}
-
-
-
+});
