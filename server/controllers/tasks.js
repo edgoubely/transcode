@@ -83,6 +83,7 @@ exports.submitTask = function(req, res, next) {
           task.user.taskSubmissions++;
           task.user.save(function(err) {
             Core.pushJob(task, function(err, jobId) {
+              task.job = jobId;
               done(task, 'queued');
             });
           });

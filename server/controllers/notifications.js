@@ -71,7 +71,6 @@ exports.ipn = function(io) {
             } else if (subscriptionPlan == 'Zen') {
               user.subscriptionPlan = 2; // TODO
             }
-
             // TODO: find pending tasks and update their status
             // TODO: send the taks to the Core
             // TODO: notify user

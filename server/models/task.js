@@ -8,6 +8,7 @@ var taskSchema = new Schema({
     ref: 'User'
   },
   name: String,
+  job: String,
   command: String,
   status: String,
   submissionDate: Date,

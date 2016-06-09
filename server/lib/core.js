@@ -15,8 +15,8 @@ Core.prototype.pushJob = function(task, cb) {
   request.get({
     url: this.url,
     qs: params
-  }, function(err, response, jobId) {
-    cb(err, jobId);
+  }, function(err, response, body) {
+    cb(err, body.job.id);
   });
 };
 
