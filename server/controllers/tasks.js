@@ -36,9 +36,9 @@ exports.index = function(req, res, next) {
     if (err) {
       return next(err);
     }
-    var resultLocation = path.join(req.app.get('video'), task.user, task.target.filename );
-    resultLocation += '.' + task.target.format;
-
+    var resultLocation = path.join(req.app.get('videos-base-directory'), task.user.toString(), 'out', task.target.filename );
+    // resultLocation += '.' + task.target.format;
+    console.log(resultLocation);
     fs.exists(resultLocation, function(exists) {
       if (!exists) {
         return res.status(404).end();

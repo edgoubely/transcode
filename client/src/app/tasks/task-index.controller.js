@@ -17,7 +17,7 @@ function TaskIndexCtrl($scope, TcConfig, Tasks, TcNotifs) {
       $scope.tasks = response.data;
       for (var i = $scope.tasks.length - 1; i >= 0; i--) {
         if ($scope.tasks[i].target) {
-          $scope.tasks[i].download = TcConfig.API + 'task/' + $scope.tasks[i].id + '/result';
+          $scope.tasks[i].download = TcConfig.API + 'task/' + $scope.tasks[i]._id + '/result';
         }
       }
     })
