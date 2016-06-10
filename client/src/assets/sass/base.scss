@@ -94,8 +94,8 @@ html {
 		letter-spacing: 2px;
 		font-weight: 200;
 		.page-wrapper {
-			padding-top: 50px;
-			
+			padding-top: $margin*5;
+			padding-bottom: $margin*5;
 			.jumbotron {
 				background-color: transparent;
 				margin-bottom: 0;
@@ -109,7 +109,8 @@ html {
 				}
 			}
 			@media screen and (min-width:640px) {
-				padding-top: 60px;
+				padding-top: $margin*6;
+				padding-bottom: $margin*6;
 				.jumbotron {
 					h1 {
 						font-size: 38px;
@@ -160,3 +161,5 @@ html {
 @import "./contact";
 @import "./tasks";
 @import "./form-style";
+@import "./profile";
+@import "./about";
