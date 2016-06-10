@@ -1,7 +1,7 @@
-<div>
-  <div style="height: 305px">
-    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" template-url="template/carousel/carousel.html">
-      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" template-url="../template/carousel/slide.html">
+<div class="home-wrapper">
+  <div class="carousel-wrapper">
+    <uib-carousel class="carousel" active="active" interval="myInterval" no-wrap="noWrapSlides" template-url="template/carousel/carousel.html">
+      <uib-slide class="carousel-slide" ng-repeat="slide in slides track by slide.id" index="slide.id" template-url="../template/carousel/slide.html">
         <img ng-src="{{slide.image}}" style="margin:auto;">
         <div class="carousel-caption">
           <h4>Slide {{slide.id}}</h4>
@@ -10,24 +10,8 @@
       </uib-slide>
     </uib-carousel>
   </div>
-</div>
-
-<!--div ng-controller="CarouselDemoCtrl">
-	<div style="height: 305px">
-		<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-			<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-				<img ng-src="{{slide.image}}" style="margin:auto;">
-				<div class="carousel-caption">
-					<h4>Slide {{slide.id}}</h4>
-					<p>{{slide.text}}</p>
-				</div>
-			</uib-slide>
-		</uib-carousel>
-	</div>
-</div-->
-	
-
-<div class="container">
+  
+  <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-6 text-center">
           <h3>Convert any media to any format</h3>
@@ -41,4 +25,7 @@
           <p><a class="btn btn-primary" href="/#/getstarted">Try it »</a></p>
         </div>
       </div>
+	</div>
 </div>
+
+
