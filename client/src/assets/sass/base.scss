@@ -78,6 +78,8 @@ $margin : 10px;
 $backgroundColor : #DBECE8;
 $navColor : $backgroundColor;
 
+$navBackground : #4F979B;
+
 $linkColor : $mediumBurgundy;
 
 
@@ -93,8 +95,26 @@ html {
 		font-weight: 200;
 		.page-wrapper {
 			padding-top: 50px;
+			
+			.jumbotron {
+				background-color: transparent;
+				margin-bottom: 0;
+				h1 {
+					font-size: 32px;
+				    font-weight: 400;
+				    letter-spacing: 2px;
+				    color: $green;
+				    padding: $margin*1.5 0;
+				    text-align: center;
+				}
+			}
 			@media screen and (min-width:640px) {
 				padding-top: 60px;
+				.jumbotron {
+					h1 {
+						font-size: 38px;
+					}
+				}
 			}
 		}
 		a {
@@ -137,3 +157,6 @@ html {
 @import "./home";
 @import "./get-started";
 @import "./pricing";
+@import "./contact";
+@import "./tasks";
+@import "./form-style";
