@@ -54,12 +54,17 @@ $nav-width : 400px;
 		position: absolute;
 		left: $nav-width + $margin*3;
 		top: 20px;
-		text-shadow: 4px 0px 4px #9b9b9b;
+		text-shadow: 2px 0px 2px rgba(0,0,0,0.3);
 	}
 }
 
 #menu {
-	background-color: $darkPistachio;
+	background-color: $navBackground;
+	-moz-box-shadow: 1px 0px 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 1px 0px 10px rgba(0,0,0,0.3);
+    -o-box-shadow: 1px 0px 10px rgba(0,0,0,0.3);
+    box-shadow: 1px 0px 10px rgba(0,0,0,0.3);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=rgba(0,0,0,0.3), Direction=90, Strength=12);
 	padding: $margin*2 $margin*3;
 	height: 100%;
 	width: 100%;
@@ -98,7 +103,9 @@ $nav-width : 400px;
 					&:hover {
 						text-decoration: underline;	
 					}
-					&.selected {
+				}
+				&.active {
+					a {
 						font-weight: 700;
 						text-decoration: underline;
 					}

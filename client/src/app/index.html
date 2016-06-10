@@ -37,44 +37,44 @@
 					  		<span class="username" ng-bind-html="user.name"></span>
 					  	</p>
 				  	</li>
-				  	<li ng-if="isAuthenticated()">
-					  	<a href="/#/logout" tc-menu-hide>
+				  	<li ng-if="isAuthenticated()" ui-sref-active="active">
+					  	<a ui-sref="logout" tc-menu-hide>
 						  	<p>Logout</p>
 					  	</a>
 				  	</li>
-				  	<li ng-if="!isAuthenticated()">
-					  	<a href="/#/signup" class="notlogged" tc-menu-hide>
+				  	<li ng-if="!isAuthenticated()" ui-sref-active="active">
+					  	<a ui-sref="signup" class="notlogged" tc-menu-hide>
 						  	<p>Register</p>
 					  	</a>
 				  	</li>
-				  	<li ng-if="!isAuthenticated()">
-					  	<a href="/#/login" class="notlogged" tc-menu-hide>
+				  	<li ng-if="!isAuthenticated()" ui-sref-active="active">
+					  	<a ui-sref="login" class="notlogged" tc-menu-hide>
 						  	<p>Login</p>
 					  	</a>
 				  	</li>
 				  	<hr>
-				  	<li>
-					  	<a href="/#/home" class="selected" tc-menu-hide><p>Home</p></a>
+				  	<li ui-sref-active="active">
+					  	<a ui-sref="home" tc-menu-hide><p>Home</p></a>
 				  	</li>
-				  	<li>
-					  	<a href="/#/getstarted" tc-menu-hide><p>Get started</p></a>
+				  	<li ui-sref-active="active">
+					  	<a ui-sref="getstarted" tc-menu-hide><p>Get started</p></a>
 				  	</li>
-            <li ng-if="user">
-              <a href="/#/tasks" tc-menu-hide><p>Tasks</p></a>
-            </li>
-				  	<li>
-					  	<a href="/#/pricing" tc-menu-hide><p>Pricing</p></a>
+		            <li ng-if="user" ui-sref-active="active">
+		              <a ui-sref="tasks" tc-menu-hide><p>Tasks</p></a>
+		            </li>
+				  	<li ui-sref-active="active">
+					  	<a ui-sref="pricing" tc-menu-hide><p>Pricing</p></a>
 				  	</li>
-            <li>
-              <a href="/#/about" tc-menu-hide><p>About</p></a>
-            </li>
-				  	<li>
-					  	<a href="/#/contact" tc-menu-hide><p>Contact</p></a>
+				  	<li ui-sref-active="active">
+		              <a ui-sref="about" tc-menu-hide><p>About</p></a>
+		            </li>
+				  	<li ui-sref-active="active">
+					  	<a ui-sref="contact" tc-menu-hide><p>Contact</p></a>
 				  	</li>
 				  	<hr class="menu-end">
 					<li class="hand-coded">
 						<p>Hand-coded with love in Paris</p>
-						<p>Copyright 2012-2016 &#169; Transcode, tous droits réservés</p>
+						<p>Copyright 2012-2016 &#169; 4MATES, tous droits réservés</p>
 			    	</li>
 			  	</ul>
 		  	</div>
