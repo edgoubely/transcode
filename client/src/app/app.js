@@ -76,6 +76,10 @@ angular
         resolve: {
           loginRequired: loginRequired
         }
+      })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'about.tpl.html',
       });
 
     $urlRouterProvider.otherwise('/');
