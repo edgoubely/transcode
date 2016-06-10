@@ -20,7 +20,7 @@
 	          <td><p>{{task.submissionDate | elapsed}}</p></td>
 	          <td><p>{{task.name}}</p></td>
 	          <td><p>{{task.status}}</p></td>
-	          <td><a target="_self" ng-href="{{task.download}}" ng-show="task.target.filename">download</a></td>
+	          <td><a target="_self" ng-href="{{task.download}}" ng-show="task.status === 'done'">download</a></td>
 	        </tr>
 	      </tbody>
 	    </table>
