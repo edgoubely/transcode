@@ -1,0 +1,64 @@
+/**
+ *	SASS
+ *	home.scss
+ * 
+ * 
+ *	general StyleSheet
+ * 
+ */
+
+
+.home-wrapper {
+	.carousel-wrapper {
+		height: 200px;
+		@media screen and (min-width:480px) {
+			height: 250px;
+		}
+		@media screen and (min-width:580px) {
+			height: 300px;
+		}
+		@media screen and (min-width:768px) {
+			height: 400px;
+		}
+		@media screen and (min-width:1024px) {
+			height: 600px;
+		}
+		.carousel {
+			position: relative;
+		    overflow: hidden;
+		    width: 100%;
+		    height: 100%;
+		    .carousel-inner {
+			    height: 100%;
+		    }
+		    .carousel-slide {
+			    height: 100%;
+			    .carousel-caption {
+			    	bottom: $margin*2;
+				    h4 {
+					    display: none;
+				    }
+				    p {
+					    vertical-align: middle;
+				    }
+				  
+			    }
+		    }
+		    .carousel-indicators {
+			    display: none;
+		    }
+		}
+	}
+	.carousel-arrow {
+		position: absolute;
+	    top: 50%; 
+	    z-index: 5;
+	    display: inline-block;
+	    @media screen and (min-width:640px) {
+		    margin-top: -10px;
+			font-size: 30px;
+		}
+	}
+	
+	
+}

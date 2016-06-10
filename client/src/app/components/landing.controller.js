@@ -12,10 +12,9 @@ function HomeCtrl($scope, $http) {
   var currIndex = 0;
 
   $scope.addSlide = function() {
-    var newWidth = 600 + slides.length + 1;
     slides.push({
-      image: 'http://lorempixel.com/' + newWidth + '/300',
-      text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+      image: 'images/image'+(currIndex+1)+'.jpg',
+      text: ['Listen your beloved musics','Convert all your videos','And that, on every devices!'][slides.length % 4],
       id: currIndex++
     });
   };
@@ -25,7 +24,7 @@ function HomeCtrl($scope, $http) {
     assignNewIndexesToSlides(indexes);
   };
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 3; i++) {
     $scope.addSlide();
   }
 

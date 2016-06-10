@@ -1,6 +1,39 @@
-<div class="container">
+<div class="container page-wrapper" id="get-started">
+	<div class="jumbotron">
+		<h1>Get started now! :)</h1>
+	</div>
+	<form class="form-inline text-center" name="urlForm" ng-show="!currentTask.source">
+		<div class="form-group">		
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+					<div class="form-item">
+						<h2>Pick a file</h2>
+						<button name="file" 
+							ngf-select="sendFile(file)"
+							ngf-accept="'video/*'"
+							ng-model="file">
+							<span data-icon=")" class="btn-icon">&nbsp;</span>
+							<span class="btn-text">Upload</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<div class="form-item">
+						<h2>Paste a URL</h2>
+						<input placeholder="Paste a URL" name="videoURL" 
+							ng-model-options="{ debounce: 500 }"
+							ng-model="videoURL"
+							type="text"
+							tc-url
+						required>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 
-	<h2>Get started now!</h2>
+
+	<!--h2>Get started now!</h2>
 	<form class="form-inline text-center" name="urlForm" ng-show="!currentTask.source">
 		<div class="form-group">		
 			<div class="row">
@@ -22,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	</form-->
 		
 	<!-- Barre de progressoin de l'envoi du fichier -->
 	<div ng-show="isFileSelected && !isFileUploaded">

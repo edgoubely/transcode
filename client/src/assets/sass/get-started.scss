@@ -1,0 +1,103 @@
+/**
+ *	SASS
+ *	get-started.scss
+ * 
+ * 
+ *	general StyleSheet
+ * 
+ */
+
+
+#get-started {
+	.jumbotron {
+		background-color: transparent;
+		margin-bottom: 0;
+		h1 {
+			font-size: 32px;
+		    font-weight: 400;
+		    letter-spacing: 2px;
+		    color: $green;
+		    padding: $margin*1.5 0;
+		    text-align: center;
+		}
+	}
+	.form-group {
+		width: 100%;
+		.form-item {
+			border-top: 1px solid $green;
+			width: 100%;
+			@include bbox;
+			padding: $margin*3 $margin;
+			margin-bottom: $margin*1.5;
+			h2 {
+				margin-bottom: $margin*2;
+				font-size: 24px;
+			}
+			button, input {
+				width: 100%;
+				outline: 0;
+				border: 0;
+				padding: $margin $margin*2;
+				@include border-radius(4px);
+			}
+			input {
+				color: $green;
+			}
+			button {
+				background-color: $green;
+				border: 1px solid $green;
+				color: white;
+				&:hover {
+					border: 1px solid $green;
+					background-color: transparent;
+					color: $green;
+				}
+				span {
+					display: inline-block;
+					vertical-align: middle;
+					line-height: 0;
+					font-weight: 200;
+				}
+				.btn-icon {
+					font-size: 22px;
+				}
+				.btn-text {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	@media screen and (min-width:640px) {
+		.jumbotron {
+			h1 {
+				font-size: 38px;
+			}
+		}
+		.form-group {
+			.form-item {
+				@include border-radius(4px);
+				padding: $margin*3 $margin;
+				background-color: rgba(0, 0, 0, 0.05);
+				border-top: 0;
+				margin-bottom: $margin*3;
+				h2 {
+					margin-bottom: $margin*4;
+					font-size: 28px;
+				}
+				button, input {
+					width: 50%;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+	@media screen and (min-width:992px) {
+		.form-group {
+			.form-item {
+				button, input {
+					width: 80%;
+				}
+			}
+		}
+	}
+}
