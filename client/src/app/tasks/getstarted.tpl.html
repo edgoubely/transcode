@@ -31,34 +31,9 @@
 			</div>
 		</div>
 	</form>
-
-
-	<!--h2>Get started now!</h2>
-	<form class="form-inline text-center" name="urlForm" ng-show="!currentTask.source">
-		<div class="form-group">		
-			<div class="row">
-				<div class="col-sm-12">
-					<button class="btn btn-primary" name="file" 
-						ngf-select="sendFile(file)"
-						ngf-accept="'video/*'"
-						ng-model="file">
-						Pick a file
-					</button>
-				</div>
-				<div class="col-sm-12">
-					<input class="form-control input" style="width: 118px;" placeholder="Paste a URL" name="videoURL" 
-						ng-model-options="{ debounce: 500 }"
-						ng-model="videoURL"
-						type="text"
-						tc-url
-					required>
-				</div>
-			</div>
-		</div>
-	</form-->
 		
 	<!-- Barre de progressoin de l'envoi du fichier -->
-	<div ng-show="isFileSelected && !isFileUploaded">
+	<div ng-show="isFileSelected && !isFileUploaded" class="progress-wrapper">
 		<p>Envoi du fichier <b>{{file.name}}</b> en cours...</p>
 		<div class="progress">
 			<div class="progress-bar"
@@ -71,38 +46,41 @@
 			</div>
 		</div> 
 	</div>
-		
-	<form name="taskCreationForm" ng-hide="!currentTask.source">
-		<h3>File</h3>
-		<p>
-		<b>{{currentTask.source.displayName}}</b> ({{currentTask.source.infos.format.size}} bytes)<br>
-		<b>Format:</b> {{currentTask.source.infos.format.format_long_name}}<br>
-		<b>Extensions:</b> {{currentTask.source.infos.format.format_name}}<br>
-		<b>Duration:</b> {{currentTask.source.infos.format.duration}}s<br>
-		<b>Bitrate:</b> {{currentTask.source.infos.format.bit_rate}} b/s<br>
-		<b>Streams:</b>
-		<ol>
-			<li ng-repeat="stream in currentTask.source.infos.streams"><b>({{stream.codec_type}})</b>&nbsp;{{stream.codec_long_name}}</li>
-		</ol>			
-	
-		<h3>Task</h3>
-		<div class="form-group">
-				<select class="form-control"
-				ng-init="command = availableCommands[0]"
-				ng-model="command"
-				ng-options="command.descr for command in availableCommands">
-			</select>
+			
+	<div class="row">
+		<div class="col-sm-12 col-md-6 task-content" ng-hide="!currentTask.source">
+			<form name="taskCreationForm" class="progress-wrapper">
+				<h3>File</h3>
+				<p>
+				<b>{{currentTask.source.displayName}}</b> ({{currentTask.source.infos.format.size}} bytes)<br>
+				<p><b>Format:</b> {{currentTask.source.infos.format.format_long_name}}<br></p>
+				<p><b>Extensions:</b> {{currentTask.source.infos.format.format_name}}<br></p>
+				<p><b>Duration:</b> {{currentTask.source.infos.format.duration}}s<br></p>
+				<p><b>Bitrate:</b> {{currentTask.source.infos.format.bit_rate}} b/s<br></p>
+				<p><b>Streams:</b></p>
+				<ol>
+					<li ng-repeat="stream in currentTask.source.infos.streams"><b>({{stream.codec_type}})</b>&nbsp;{{stream.codec_long_name}}</li>
+				</ol>			
+				<h3>Task</h3>
+				<div class="form-group">
+						<select class="form-control"
+						ng-init="command = availableCommands[0]"
+						ng-model="command"
+						ng-options="command.descr for command in availableCommands">
+					</select>
+				</div>
+				<div class="form-group" ng-show="command.code == 'convert'">
+					<p class="control-label">Choose a destination format :</p>
+					<select class="form-control" 
+						ng-init="format = availableFormats[0]"
+						ng-model="format"
+						ng-options="format.name for format in availableFormats">
+					</select>
+				</div>	
+				
+				<button type="submit" ng-click="abortTaskCreation()">Cancel</button>
+				<button type="submit" ng-disabled="taskCreationForm.$invalid" ng-click="submitTask()">Proceed</button>
+			</form>
 		</div>
-		<div class="form-group" ng-show="command.code == 'convert'">
-			<label class="control-label">Choose a destination format :</label>
-			<select class="form-control" 
-				ng-init="format = availableFormats[0]"
-				ng-model="format"
-				ng-options="format.name for format in availableFormats">
-			</select>
-		</div>
-		
-		<button type="submit" class="btn btn-warning" ng-click="abortTaskCreation()">Cancel</button>
-		<button type="submit" ng-disabled="taskCreationForm.$invalid" class="btn btn-primary" ng-click="submitTask()">Proceed</button>
-	</form>
+	</div>	
 </div>

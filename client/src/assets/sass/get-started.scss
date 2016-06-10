@@ -9,6 +9,29 @@
 
 
 #get-started {
+	padding-bottom: $margin*8;
+	button {
+		background-color: $green;
+		border: 1px solid $green;
+		color: white;
+		&:hover {
+			//border: 1px solid $green;
+			background-color: transparent;
+			color: $green;
+		}
+		span {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 0;
+			font-weight: 200;
+		}
+		.btn-icon {
+			font-size: 22px;
+		}
+		.btn-text {
+			font-size: 18px;
+		}
+	}
 	.jumbotron {
 		background-color: transparent;
 		margin-bottom: 0;
@@ -36,36 +59,46 @@
 			button, input {
 				width: 100%;
 				outline: 0;
-				border: 0;
 				padding: $margin $margin*2;
 				@include border-radius(4px);
 			}
 			input {
+				border: 0;
 				color: $green;
 			}
-			button {
-				background-color: $green;
-				border: 1px solid $green;
-				color: white;
-				&:hover {
-					border: 1px solid $green;
-					background-color: transparent;
-					color: $green;
-				}
-				span {
-					display: inline-block;
-					vertical-align: middle;
-					line-height: 0;
-					font-weight: 200;
-				}
-				.btn-icon {
-					font-size: 22px;
-				}
-				.btn-text {
-					font-size: 18px;
-				}
-			}
 		}
+	}
+	.progress-wrapper {
+		p {
+			margin-bottom: $margin;
+		}
+		h3 {
+		    font-size: 22px;
+			margin-bottom: $margin*1.5;
+			margin-top: $margin*2.5;
+			text-align: center;
+		}
+		select {
+			@include border-radius(4px);
+			border: 0;
+			height: 42px;
+			font-family: $open-sans;
+			letter-spacing: 2px;
+			outline: 0;
+		}
+		button {
+			@include intrinsic;
+			outline: 0;
+			padding: $margin $margin*2;
+			@include border-radius(4px);
+			margin-top: $margin;
+		}
+	}
+	.task-content {
+		margin: 0 auto;
+		float: none;
+		border-top: 2px solid rgba(0, 0, 0, 0.05);
+		padding: $margin $margin*3 $margin*3 $margin*3;
 	}
 	@media screen and (min-width:640px) {
 		.jumbotron {
@@ -90,6 +123,7 @@
 				}
 			}
 		}
+		
 	}
 	@media screen and (min-width:992px) {
 		.form-group {
@@ -98,6 +132,9 @@
 					width: 80%;
 				}
 			}
+		}
+		.task-content {
+			border: 2px solid rgba(0, 0, 0, 0.05);
 		}
 	}
 }

@@ -1,25 +1,27 @@
-<div class="container">
-  <div class="col-lg-4">
-    <div class="panel panel-default">
+<div class="container page-wrapper" id="pricing">
+	<div class="jumbotron">
+		<h1>Our pricing</h1>
+	</div>
+  <div class="col-lg-4 price-item">
+    <div class="price-wrapper">
       <div class="panel-heading text-center">
         Discover
       </div>
-      
       <div class="panel-body">
         <div class="pricing-table-price">Free</div>
         <hr>
         <ul>
-          <li><strong>5</strong> Free tasks</td></li>
-          <li><strong>10GB</strong> of task results storage</td></li>
-          <li><strong>Low</strong> priority queue for your tasks</li>
+          <li><p><span data-icon="*">&nbsp;</span>5 Free tasks</p></li>
+          <li><p><span data-icon="*">&nbsp;</span>10GB of task results storage</p></li>
+          <li><p><span data-icon="*">&nbsp;</span>Low priority queue for your tasks</li>
         </ul>
-        <hr>
-        <p class="text-center"><em>Discover our service!</em></p>
+        <hr class="hr-hidden">
+        <p class="text-center"><a href="/#/getstarted" class="getstarted-btn">Discover our service!</a></p>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
-    <div class="panel panel-default">
+  <div class="col-lg-4 price-item">
+    <div class="price-wrapper">
       <div class="panel-heading text-center">
         On-Demand
       </div>
@@ -27,10 +29,11 @@
         <div class="pricing-table-price">$4.99</div>
         <hr>
         <ul>
-          <li><strong>50</strong> tasks</td></li>
-          <li><strong>8 hours</strong> of computation time</td></li>
-          <li><strong>100GB</strong> cap of task results storage</td></li>
-          <li><strong>Medium</strong> priority queue for your tasks</li>
+          <li><p><span data-icon="*">&nbsp;</span>50 tasks</p></li>
+          <li><p><span data-icon="*">&nbsp;</span>8 hours of computation time</p></li>
+          <li><p><span data-icon="*">&nbsp;</span>100GB cap of task results storage</li>
+          <li><p><span data-icon="*">&nbsp;</span>Medium priority queue for your tasks</li>
+
         </ul>
         <hr>
         <p><em>For occasionnal users, buy some computation time and storage space whenever you need it.</em></p>
@@ -40,14 +43,13 @@
           <input type="hidden" name="custom" value="{{user.id}}">
           <input type="hidden" name="cmd" value="_s-xclick">
           <input type="hidden" name="hosted_button_id" value="XE63TPJSX3LMS">
-          <input type="image" src="images/paypal-buy-button.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne">
-          <!-- <img alt="" border="0" src="https://www.sandbox.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1"> -->
+          <input class="getstarted-btn" type="submit" border="0" name="submit" value="Get it">
         </form>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
-    <div class="panel panel-default">
+  <div class="col-lg-4 price-item">
+    <div class="price-wrapper">
       <div class="panel-heading text-center">
         Zen
       </div>
@@ -55,9 +57,9 @@
         <div class="pricing-table-price">$9.99</div>
         <hr>
         <ul>
-          <li><strong>Unlimited</strong> tasks</td></li>
-          <li><strong>1TB</strong> of task results storage</td></li>
-          <li><strong>High</strong> priority queue</li>
+          <li><p><span data-icon="*">&nbsp;</span>Unlimited tasks</p></li>
+          <li><p><span data-icon="*">&nbsp;</span>1TB of task results storage</p></li>
+          <li><p><span data-icon="*">&nbsp;</span>High priority queue for your tasks</li>
         </ul>
         <hr>
         <p class="text-center"><em>Use our service as much as you like, without any limitations.</em></p>
@@ -67,7 +69,7 @@
           <input type="hidden" name="custom" value="{{user.id}}">
           <input type="hidden" name="cmd" value="_s-xclick">
           <input type="hidden" name="hosted_button_id" value="MBZS7XYSSWRXL">
-          <input type="image" src="images/paypal-subscribe-button.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne">
+          <input class="getstarted-btn" type="submit" border="0" name="submit" value="Subscribe">
           <!-- <img alt="" border="0" src="https://www.sandbox.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1"> -->
         </form>
       </div>

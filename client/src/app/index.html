@@ -32,7 +32,10 @@
 		  	<div class="navitems-wrapper users-wrapper">
 			  	<ul>
 				  	<li class="login-item" ng-if="isAuthenticated()">
-					  	<p><span data-icon="U"></span>&nbsp;Username</p>
+					  	<p>
+					  		<span data-icon="U"></span>
+					  		<span class="username" ng-bind-html="user.name"></span>
+					  	</p>
 				  	</li>
 				  	<li ng-if="isAuthenticated()">
 					  	<a href="/#/logout" tc-menu-hide>
@@ -87,37 +90,6 @@
 			</div>
 		</div>
 	 </div>
-	
-
-      <!--div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">&nbsp;Transcode</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="/#/getstarted">Get started</a></li>
-          <li ng-if="user"><a href="/#/tasks">Tasks</a></li>
-          <li><a href="/#/pricing">Pricing</a></li>
-          <li><a href="/#/contact">Contact</a></li>
-        </ul>
-        
-        <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
-          <li><a href="/#/login">Login</a></li>
-          <li><a href="/#/signup">Sign up</a></li>
-        </ul>
-        
-        <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-          <li>
-            <a href="/#/profile">
-              <img ng-src="{{user.picture || 'http://placehold.it/100x100'}}" class="img-circle" style="height: 25px; display: inline;">
-              &nbsp;<b ng-bind-html="user.name"></b>
-            </a>
-          </li>
-          <li><a href="/#/logout">Logout</a></li>
-        </ul>
-      </div>
-    </div-->
-    
-    
     
     <div ui-view></div>
     <!-- Third-party Libraries -->
