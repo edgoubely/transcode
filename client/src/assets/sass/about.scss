@@ -1,0 +1,36 @@
+#about {
+	.baseline {
+		font-size: 22px;
+		line-height: 26px;
+		margin-bottom: $margin*2;
+	}
+	
+	.form-group {
+		.form-item {
+			border-bottom: 1px solid $green;
+			width: 100%;
+			@include bbox;
+			padding: $margin*3 $margin;
+			margin-bottom: $margin*1.5;
+			h2 {
+				margin-bottom: $margin*2;
+				font-size: 24px;
+				font-weight: 400;
+			}
+			button, input {
+				width: 100%;
+				outline: 0;
+				padding: $margin $margin*2;
+				@include border-radius(4px);
+			}
+			input {
+				border: 0;
+				color: $green;
+			}
+			p {
+				margin-bottom: $margin;
+				font-size: 20px;
+			}
+		}
+	}
+}

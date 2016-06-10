@@ -1,0 +1,82 @@
+/**
+ *	SASS
+ *	profile.scss
+ * 
+ * 
+ *	general StyleSheet
+ * 
+ */
+ 
+#profile {
+	.profile-item {
+		margin-bottom: $margin*3;
+		.panel-heading {
+			background-color: $green;
+			color: $backgroundColor;
+		}
+		.panel-body {
+			padding: $margin*1.5 $margin*3;
+			.btn-group-vertical {
+				margin: 0 auto;
+			}
+		}
+		.form-group {
+			margin-bottom: $margin;
+			p {
+				line-height: 20px;
+				position: relative;
+				margin-bottom: $margin;
+			}
+		}
+		input {
+			width: 100%;
+			outline: 0;
+			padding: $margin $margin*2;
+			@include border-radius(4px);
+			border: 0;
+			color: $green;
+		}
+		.danger {
+			color: red;
+			text-align: center;
+		}
+		.getstarted-btn {
+			display: block;
+			width: 100%;
+			outline: 0;
+			border: 0;
+			padding: $margin $margin*2;
+			@include border-radius(4px);			
+			background-color: transparent;
+			border: 1px solid $green;
+			color: $green;
+			text-decoration: none;
+			text-align: center;
+			margin-top: $margin*2;
+			margin-bottom: $margin;
+			&:hover {
+				border: 1px solid $green;
+				background-color: $green;
+				color: white;
+			}
+		}
+	}
+	.profile-wrapper {
+		@include border-radius(4px);
+		background-color: rgba(0, 0, 0, 0.05);
+	}
+	@media screen and (min-width:640px) {
+		.jumbotron {
+			h1 {
+				font-size: 38px;
+			}
+		}
+	}
+} 
+
+.modal-dialog {
+	p {
+		margin-bottom: $margin;
+	}
+}
+ 

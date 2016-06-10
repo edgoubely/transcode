@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Transcode</title>
     <!-- Fonts from Google fonts-->
 	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700,800,300italic,400italic,600italic,700italic,800italic'>
@@ -31,11 +32,12 @@
 	      	</div>
 		  	<div class="navitems-wrapper users-wrapper">
 			  	<ul>
-				  	<li class="login-item" ng-if="isAuthenticated()">
-					  	<p>
-					  		<span data-icon="U"></span>
-					  		<span class="username" ng-bind-html="user.name"></span>
-					  	</p>
+				  	<li class="login-item" ng-if="isAuthenticated()" ui-sref-active="active">
+				  		<a ui-sref="profile" tc-menu-hide>
+						  	<p>
+						  		<span data-icon="U">&nbsp;</span><span class="username" ng-bind-html="user.name"></span>
+						  	</p>
+				  		</a>
 				  	</li>
 				  	<li ng-if="isAuthenticated()" ui-sref-active="active">
 					  	<a ui-sref="logout" tc-menu-hide>

@@ -1,60 +1,69 @@
-<div class="container">
-  <div class="col-md-6">
-    <div class="panel panel-default">
+<div class="container page-wrapper" id="profile">
+	<div class="jumbotron">
+		<h1>Manage your account</h1>
+	</div>
+  <div class="col-md-6 profile-item">
+    <div class="profile-wrapper">
       <div class="panel-heading">Account details</div>
       <div class="panel-body">
         <form method="post" ng-submit="updateProfile()">
           <div class="form-group">
-            <label class="control-label">Profile Picture</label>
+            <p class="control-label">Profile Picture</p>
             <img class="profile-picture" ng-src="{{user.picture || 'http://placehold.it/100x100'}}">
           </div>
           <div class="form-group">
-            <label class="control-label">Display Name</label>
-            <input type="text" class="form-control" ng-model="user.name" style="width: 250px" />
+            <p class="control-label">Display Name</p>
+            <input type="text" class="form-control" ng-model="user.name" />
           </div>
           <div class="form-group">
-            <label class="control-label">Email Address</label>
-            <input type="email" class="form-control" ng-model="user.email" style="width: 250px" />
+            <p class="control-label">Email Address</p>
+            <input type="email" class="form-control" ng-model="user.email" />
           </div>
-          <button class="btn btn-default">Update Information</button>
+          <button class="getstarted-btn">Update Information</button>
         </form>
       </div>
     </div>
   </div>
   
   <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Linked Social Accounts</div>
-      <div class="panel-body">
-        <div class="btn-group-vertical">
-          <button class="btn btn-default" ng-if="user.providers.facebook" tc-confirm-dialog tc-confirm-if="willDeleteAccount('facebook')" tc-do="unlink('facebook')">
-            <i class="ion-social-facebook"></i> Unlink Facebook Account
-          </button>
-          <button class="btn btn-primary" ng-if="!user.providers.facebook" ng-click="link('facebook')">
-            <i class="ion-social-facebook"></i> Link Facebook Account
-          </button>
-
-          <button class="btn btn-default" ng-if="user.providers.google" tc-confirm-dialog tc-confirm-if="willDeleteAccount('google')" tc-do="unlink('google')">
-            <i class="ion-social-googleplus"></i> Unlink Google Account
-          </button>
-          <button class="btn btn-primary" ng-if="!user.providers.google" ng-click="link('google')">
-            <i class="ion-social-googleplus"></i> Link Google Account
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Danger zone</div>
-      <div class="panel-body">
-        <div class="form-group">
-          <button class="btn btn-danger" tc-confirm-dialog tc-confirm-if="true" tc-do="deleteAccount()">
-            Delete my account
-          </button>
-        </div>
-        
-        <p>This action is irreversible.</p>
-      </div>
-    </div>
+  	<div class="row">
+	  	<div class="col-sm-12 profile-item">
+		  	<div class="profile-wrapper">
+		      <div class="panel-heading">Linked Social Accounts</div>
+		      <div class="panel-body">
+		        <div>
+		          <button class="btn btn-default" ng-if="user.providers.facebook" tc-confirm-dialog tc-confirm-if="willDeleteAccount('facebook')" tc-do="unlink('facebook')">
+		            <i class="ion-social-facebook"></i> Unlink Facebook Account
+		          </button>
+		          <button class="getstarted-btn" ng-if="!user.providers.facebook" ng-click="link('facebook')">
+		            <i class="ion-social-facebook"></i> Link Facebook Account
+		          </button>
+		
+		          <button class="getstarted-btn" ng-if="user.providers.google" tc-confirm-dialog tc-confirm-if="willDeleteAccount('google')" tc-do="unlink('google')">
+		            <i class="ion-social-googleplus"></i> Unlink Google Account
+		          </button>
+		          <button class="getstarted-btn" ng-if="!user.providers.google" ng-click="link('google')">
+		            <i class="ion-social-googleplus"></i> Link Google Account
+		          </button>
+		        </div>
+		      </div>
+		    </div>
+		  	
+	  	</div>
+	  	<div class="col-sm-12 profile-item">
+		  	<div class="profile-wrapper">
+		      <div class="panel-heading">Danger zone</div>
+		      <div class="panel-body">
+		        <div class="form-group">
+		          <button class="btn-danger getstarted-btn" tc-confirm-dialog tc-confirm-if="true" tc-do="deleteAccount()">
+		            Delete my account
+		          </button>
+		        </div>
+		        
+		        <p class="danger">This action is irreversible.</p>
+		      </div>
+		    </div>
+	  	</div>
+  	</div>
   </div>
 </div>

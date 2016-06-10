@@ -1,0 +1,36 @@
+.form-style {
+	margin: 0 auto;
+	float: none;
+	form {
+		
+		.help-block {
+			margin-top: $margin;
+		}
+		input {
+			margin-top: $margin;
+			border: 0;
+			@include border-radius(4px);
+			outline: 0;
+		}
+		.text-center {
+			margin-bottom: $margin;
+		}
+		button {
+			background-color: $green;
+			border: 1px solid $green;
+			color: white;
+			width: 100%;
+			outline: 0;
+			padding: $margin $margin*2;
+			@include border-radius(4px);
+			margin-bottom: $margin;
+			&:hover {
+				background-color: transparent;
+				color: $green;
+			}
+		}
+		h6.text {
+			background-color: transparent;
+		}
+	}
+}

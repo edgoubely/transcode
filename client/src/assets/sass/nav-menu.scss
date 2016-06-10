@@ -100,14 +100,24 @@ $nav-width : 400px;
 				a {
 					text-decoration: none;
 					color: white;
+					p, span {
+						text-decoration: none;
+					}
 					&:hover {
 						text-decoration: underline;	
+						.username {
+							text-decoration: underline;	
+						}
 					}
 				}
 				&.active {
 					a {
 						font-weight: 700;
 						text-decoration: underline;
+						.username {
+							font-weight: 700;
+							text-decoration: underline;
+						}
 					}
 				}
 				&.login-item {
