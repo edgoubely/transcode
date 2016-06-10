@@ -23,7 +23,7 @@ exports.updateTaskStatus = function(io) {
         if (io.clients[task.user]) {
           // this not the native 'clients' property of the socketio object,
           // but a custom one, so no risk of breaking 
-
+          console.log('notifie le front : ', task.status);
           io.server.to(io.clients[task.user]).emit('task_update', {
             task_id: task._id,
             new_status: task.status

@@ -13,7 +13,10 @@
         <tr ng-repeat="task in tasks">
           <td>{{task.submissionDate | elapsed}}</td>
           <td>{{task.name}}</td>
-          <td>{{task.status}}&nbsp;<a target="_self" ng-href="{{task.download}}" ng-show="task.target.filename">download</a></td>
+          <td>{{task.status}}&nbsp;
+            <a target="_self" download ng-href="{{task.download}}" ng-show="task.status === 'done'">download</a>&nbsp;
+            <a target="_self" ng-href="{{task.download}}" ng-show="task.status === 'done'">watch</a>
+          </td>
         </tr>
       </tbody>
     </table>

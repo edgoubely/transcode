@@ -16,8 +16,8 @@ function TaskIndexCtrl($scope, TcConfig, Tasks, TcNotifs) {
     .then(function(response) {
       $scope.tasks = response.data;
       for (var i = $scope.tasks.length - 1; i >= 0; i--) {
-        if ($scope.tasks[i].target) {
-          $scope.tasks[i].download = TcConfig.API + 'task/' + $scope.tasks[i]._id + '/result';
+        if ($scope.tasks[i].status === 'done') {
+          addDownloadResult($scope.tasks[i]);
         }
       }
     })
@@ -29,9 +29,16 @@ function TaskIndexCtrl($scope, TcConfig, Tasks, TcNotifs) {
     for (var i = $scope.tasks.length - 1; i >= 0; i--) {
       if ($scope.tasks[i]._id === update.task_id) {
         $scope.tasks[i].status = update.new_status;
+        if ($scope.tasks[i].status === 'done') {
+          addDownloadResult($scope.tasks[i]);
+        }
       }
     }
   });
+
+  function addDownloadResult(task) {
+    task.download = TcConfig.API + 'task/' + 'results/' + task._id + '/result' + '.' + task.target.format;
+  }
 }
 
 angular

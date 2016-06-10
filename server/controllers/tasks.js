@@ -17,9 +17,13 @@ var
  * Retrieve the user's tasks.
  */
 exports.index = function(req, res, next) {
-  Task.find({ user: req.user.id })
+  Task.find({
+      user: req.user.id
+    })
     .limit(15)
-    .sort({ submissionDate: -1 })
+    .sort({
+      submissionDate: -1
+    })
     .exec(function(err, tasks) {
       if (err)
         return next(err);
@@ -31,14 +35,12 @@ exports.index = function(req, res, next) {
  * GET /tasks/{id}/result
  * Download the task result
  */
- exports.downloadTaskResult = function(req, res, next) {
+exports.downloadTaskResult = function(req, res, next) {
   Task.findById(req.params.id, function(err, task) {
     if (err) {
       return next(err);
     }
-    var resultLocation = path.join(req.app.get('videos-base-directory'), task.user.toString(), 'out', task.target.filename );
-    // resultLocation += '.' + task.target.format;
-    console.log(resultLocation);
+    var resultLocation = path.join(req.app.get('videos-base-directory'), task.user.toString(), task.target.filename);
     fs.exists(resultLocation, function(exists) {
       if (!exists) {
         return res.status(404).end();
@@ -47,7 +49,7 @@ exports.index = function(req, res, next) {
       file.pipe(res);
     });
   });
- };
+};
 
 /**
  * DELETE /tasks/{id}
@@ -83,9 +85,9 @@ exports.deleteTaskResult = function(req, res, next) {
  * Complete a task construction and submit it to the Core if authorized.
  */
 exports.submitTask = function(req, res, next) {
-  req.assert('command').notEmpty(); //TODO
-  req.assert('format').notEmpty(); //TODO
-  req.assert('task_id').notEmpty(); //TODO
+  req.assert('command').notEmpty();
+  req.assert('format').notEmpty();
+  req.assert('task_id').notEmpty();
 
   if (req.validationErrors())
     return res.status(403).json(req.validationErrors());
@@ -96,7 +98,8 @@ exports.submitTask = function(req, res, next) {
       task.command = req.body.command;
       task.submissionDate = new Date();
       task.target.format = req.body.format;
-      //TODO: compute cost
+      task.target.filename = path.join('out', task.source.filename) + '.' + task.target.format;
+
       if (task.user) {
         // if the user has not paid or reach the max number of free tasks 
         if (!task.user.subscriptionPlan && task.user.taskSubmissions >= 5) {
