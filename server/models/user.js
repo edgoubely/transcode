@@ -22,10 +22,6 @@ var userSchema = new Schema({
     facebook: String,
     google: String
   },
-  subscriptionPlan: {
-    type: ObjectId,
-    ref: 'SubscriptionPlan'
-  },
   taskSubmissions: {
     type: Number,
     default: 0
@@ -43,6 +39,10 @@ var userSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+  pricing: {
+    type: String,
+    default: 'free'
   }
 });
 

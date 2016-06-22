@@ -102,9 +102,10 @@ exports.submitTask = function(req, res, next) {
 
       if (task.user) {
         // if the user has not paid or reach the max number of free tasks 
-        if (!task.user.subscriptionPlan && task.user.taskSubmissions >= 5) {
+        if (task.user.pricing.type === 'free' && task.user.taskSubmissions >= 5) {
           done(task, 'waiting_for_payment');
         } else {
+          //TODO: check storage usage
           task.user.taskSubmissions++;
           task.user.save(function(err) {
             Core.pushJob(task, function(err, jobId) {

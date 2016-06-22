@@ -69,7 +69,7 @@ exports.unlink = function(req, res) {
     user.providers[provider] = undefined;
 
     // If no local account exists, 
-    // checks if there are other providers
+    // check if there is another social provider
     // if not then delete the account
     if (!user.isLocal) {
       var i = 0;
@@ -155,7 +155,7 @@ function removeDirRecursively(location, next) {
               fs.unlink(file, function(err) {
                 if (err)
                   return cb(err);
-                return cb();
+                cb();
               });
             }
           });
@@ -163,7 +163,7 @@ function removeDirRecursively(location, next) {
           if (err)
             return next(err);
           fs.rmdir(location, function(err) {
-            return next(err);
+            next(err);
           });
         });
       });

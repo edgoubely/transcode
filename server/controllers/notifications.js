@@ -59,11 +59,8 @@ exports.ipn = function(io) {
           User.findById(userId, function(err, user) {
             if (err)
               return;
-            if (subscriptionPlan == 'On-demand Task Token') {
-              user.subscriptionPlan = 1; // TODO
-            } else if (subscriptionPlan == 'Zen') {
-              user.subscriptionPlan = 2; // TODO
-            }
+            console.log(mes);
+            
             // TODO: find pending tasks and update their status
             // TODO: send the taks to the Core
             // TODO: notify user
