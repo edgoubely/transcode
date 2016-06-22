@@ -21,9 +21,12 @@ function TaskCreationCtrl($scope, TcConfig, toastr, Tasks, $state, $auth) {
     code: 'convert',
     descr: 'Convert'
   }, {
-    code: 'extract',
+    code: 'extract_video',
+    descr: 'Extract video'
+  }, {
+    code: 'extract_audio',
     descr: 'Extract audio'
-  }, ];
+  }];
 
   $scope.availableFormats = [{
     ext: 'avi',
