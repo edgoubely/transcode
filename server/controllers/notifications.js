@@ -8,7 +8,7 @@ var ipn = require('paypal-ipn'),
  * Get notified when the core has finished or started a job for a task.
  */
 exports.updateTaskStatus = function(io) {
-  return function(req, res, next) {    
+  return function(req, res, next) {
     Task.findOne({
       job: req.body.id
     }, function(err, task) {
@@ -18,7 +18,7 @@ exports.updateTaskStatus = function(io) {
       task.save(function(err) {
         if (err)
           return next(err);
-        
+
         // if the client is connected, notify him
         if (io.clients[task.user]) {
           // this not the native 'clients' property of the socketio object,
@@ -42,25 +42,44 @@ exports.updateTaskStatus = function(io) {
 exports.ipn = function(io) {
   return function(req, res, next) {
     var paymentStatus = req.body.payment_status;
-    var subscriptionPlan = req.body.item_name; 
+    var pricing = req.body.item_name;
     var userId = req.body.custom;
     var opts = {};
 
     if (process.env !== 'production') {
       opts['allow_sandbox'] = true;
     }
-    res.status(200)
+    res.status(200);
     res.end('OK');
 
     ipn.verify(req.body, opts, function callback(err, mes) {
       // just ignore errors for now
+      if (err) {
+        console.error(err);
+      }
       if (!err && userId) {
         if (paymentStatus === 'Completed') {
           User.findById(userId, function(err, user) {
             if (err)
               return;
             console.log(mes);
-            
+            if (pricing === 'Zen') {
+              user.pricing = 'zen';
+            } else {
+              user.pricing = 'ondemand';
+            }
+            Task.find({
+              user: userId,
+              status: 'waiting_for_payment'
+            }, function(err, tasks) {
+              if (err) {
+                console.error(err);
+                return;
+              }
+              tasks.forEach(function(task) {
+                // TODO
+              });
+            });
             // TODO: find pending tasks and update their status
             // TODO: send the taks to the Core
             // TODO: notify user

@@ -1,5 +1,4 @@
-var SubscriptionPlan = require('../models/subscription'),
-  User = require('../models/user'),
+var User = require('../models/user'),
   Task = require('../models/task'),
   Core = require('../lib/core'),
   async = require('async'),
@@ -68,7 +67,7 @@ exports.signup = function(req, res, next) {
         task.user = user.id;
         task.status = 'submitted';
         task.save(function(err) {
-          done(err, user)
+          done(err, user);
         });
       });
     } else {
@@ -139,32 +138,6 @@ exports.signin = function(req, res, next) {
           next();
         });
       }
-    });
-  });
-};
-
-/**
- * POST
- * Subscribe to a new pricing plan.
- */
-exports.subscribe = function(req, res, next) {
-  req.assert('sub-plan-id').notEmpty();
-
-  var errors = req.validationErrors();
-
-  if (errors) {
-    req.status(400).json({
-      message: errors[0].msg
-    });
-  }
-
-  User.findById(req.user.id, function(err, user) {
-    SubscriptionPlan.findById(req.body['sub-plan-id'], function(err, subscription) {
-      if (err)
-        return next(err);
-
-      user.subscriptionPlan = subscription._id;
-      user.saveAndSend(res);
     });
   });
 };
@@ -311,6 +284,6 @@ exports.postForgot = function(req, res, next) {
   ], function(err) {
     if (err)
       return next(err);
-    res.end()
+    res.end();
   });
 };
