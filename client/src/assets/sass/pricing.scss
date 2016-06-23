@@ -8,18 +8,6 @@
  */
 
 #pricing {
-	.jumbotron {
-		background-color: transparent;
-		margin-bottom: 0;
-		h1 {
-			font-size: 32px;
-		    font-weight: 400;
-		    letter-spacing: 2px;
-		    color: $green;
-		    padding: $margin*1.5 0;
-		    text-align: center;
-		}
-	}
 	.price-item {
 		margin-bottom: $margin*2;
 		.panel-heading {
@@ -73,12 +61,5 @@
 	.price-wrapper {
 		@include border-radius(4px);
 		background-color: rgba(0, 0, 0, 0.05);
-	}
-	@media screen and (min-width:640px) {
-		.jumbotron {
-			h1 {
-				font-size: 38px;
-			}
-		}
 	}
 }
