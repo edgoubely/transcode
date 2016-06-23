@@ -6,30 +6,50 @@
 	}
 	
 	.form-group {
-		.form-item {
+		.team-item {
 			border-bottom: 1px solid $green;
-			width: 100%;
 			@include bbox;
 			padding: $margin*3 $margin;
 			margin-bottom: $margin*1.5;
+			margin-top: $margin;
+			img {
+				margin: 0 auto;
+				display: block;
+			}
 			h2 {
+				margin-top: $margin*2;
 				margin-bottom: $margin*2;
 				font-size: 24px;
 				font-weight: 400;
-			}
-			button, input {
-				width: 100%;
-				outline: 0;
-				padding: $margin $margin*2;
-				@include border-radius(4px);
-			}
-			input {
-				border: 0;
-				color: $green;
+				text-align: center;
 			}
 			p {
 				margin-bottom: $margin;
 				font-size: 20px;
+				text-align: center;
+			}
+		}
+		.last-item {
+			border-bottom: 0;
+		}
+		
+	}
+	@media screen and (min-width:992px) {
+		.form-group {
+			.team-item {
+				@include border-radius(4px);
+				border-bottom: 0;
+				margin-bottom: $margin;
+				padding-top: 0;
+				padding-bottom: 0;
+				.team-content {
+					background-color: rgba(0, 0, 0, 0.05);
+					padding: $margin*3 $margin;
+				}
+				h2 {
+					margin-bottom: $margin*2;
+					font-size: 28px;
+				}
 			}
 		}
 	}

@@ -32,18 +32,6 @@
 			font-size: 18px;
 		}
 	}
-	.jumbotron {
-		background-color: transparent;
-		margin-bottom: 0;
-		h1 {
-			font-size: 32px;
-		    font-weight: 400;
-		    letter-spacing: 2px;
-		    color: $green;
-		    padding: $margin*1.5 0;
-		    text-align: center;
-		}
-	}
 	.form-group {
 		width: 100%;
 		.form-item {
@@ -101,11 +89,6 @@
 		padding: $margin $margin*3 $margin*3 $margin*3;
 	}
 	@media screen and (min-width:640px) {
-		.jumbotron {
-			h1 {
-				font-size: 38px;
-			}
-		}
 		.form-group {
 			.form-item {
 				@include border-radius(4px);

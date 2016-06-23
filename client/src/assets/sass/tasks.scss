@@ -9,24 +9,11 @@
 
 
 #tasks {
-	.jumbotron {
-		background-color: transparent;
-		margin-bottom: 0;
-		h1 {
-			font-size: 32px;
-		    font-weight: 400;
-		    letter-spacing: 2px;
-		    color: $green;
-		    padding: $margin*1.5 0;
-		    text-align: center;
-		}
-	}
 	table {
 		thead {
 			background-color: $green;
 			th {
 				color: white;
-				//text-align: center;
 			}
 		}
 		td {
@@ -40,7 +27,8 @@
 				outline: 0;
 				border: 0;
 				padding: 2px $margin*2;
-				@include border-radius(4px);							background-color: $green;
+				@include border-radius(4px);							
+				background-color: $green;
 				border: 1px solid $green;
 				color: white;
 				text-decoration: none;
@@ -51,14 +39,6 @@
 					background-color: transparent;
 					color: $green;
 				}
-			}
-		}
-	}
-	
-	@media screen and (min-width:640px) {
-		.jumbotron {
-			h1 {
-				font-size: 38px;
 			}
 		}
 	}
